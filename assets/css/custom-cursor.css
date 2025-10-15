@@ -1,0 +1,203 @@
+/* ========================================
+   CURSOR PERSONNALISÉ DREAM SKIN
+   ======================================== */
+
+/* Variables CSS pour les couleurs */
+:root {
+    --cursor-primary: rgba(175, 207, 186, 0.8);
+    --cursor-secondary: rgba(45, 63, 46, 0.8);
+    --cursor-shadow: rgba(175, 207, 186, 0.4);
+    --cursor-shadow-gray: rgba(45, 63, 46, 0.4);
+}
+
+/* Curseur personnalisé de base */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--cursor-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    box-shadow: 0 0 10px var(--cursor-shadow);
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.05); 
+    }
+}
+
+/* Curseur gris pour contraste */
+.custom-cursor.gray-mode {
+    background: var(--cursor-secondary);
+    box-shadow: 0 0 10px var(--cursor-shadow-gray);
+}
+
+/* État sur éléments interactifs */
+.custom-cursor.hover {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 2px solid var(--cursor-primary);
+    animation: none;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-cursor.hover.gray-mode {
+    border-color: var(--cursor-secondary);
+}
+
+/* État sur texte */
+.custom-cursor.text {
+    width: 2px;
+    height: 20px;
+    border-radius: 1px;
+    background: var(--cursor-primary);
+    box-shadow: 0 0 8px var(--cursor-shadow);
+    animation: none;
+}
+
+.custom-cursor.text.gray-mode {
+    background: var(--cursor-secondary);
+    box-shadow: 0 0 8px var(--cursor-shadow-gray);
+}
+
+/* État papillon */
+.custom-cursor.butterfly {
+    width: 16px;
+    height: 12px;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+}
+
+.custom-cursor.butterfly::before,
+.custom-cursor.butterfly::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 6px;
+    background: var(--cursor-primary);
+    border-radius: 50% 10% 50% 80%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.custom-cursor.butterfly.gray-mode::before,
+.custom-cursor.butterfly.gray-mode::after {
+    background: var(--cursor-secondary);
+}
+
+.custom-cursor.butterfly::before {
+    left: -2px;
+    transform: translateY(-50%) rotate(15deg);
+}
+
+.custom-cursor.butterfly::after {
+    right: -2px;
+    transform: translateY(-50%) rotate(-15deg) scaleX(-1);
+}
+
+.custom-cursor.butterfly.flap::before {
+    transform: translateY(-50%) rotate(25deg);
+}
+
+.custom-cursor.butterfly.flap::after {
+    transform: translateY(-50%) rotate(-25deg) scaleX(-1);
+}
+
+/* Onde de clic */
+.click-ripple {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border: 2px solid var(--cursor-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+}
+
+.click-ripple.gray-mode {
+    border-color: var(--cursor-secondary);
+}
+
+@keyframes ripple {
+    to {
+        width: 60px;
+        height: 60px;
+        border-color: rgba(175, 207, 186, 0);
+    }
+}
+
+@keyframes ripple-gray {
+    to {
+        width: 60px;
+        height: 60px;
+        border-color: rgba(45, 63, 46, 0);
+    }
+}
+
+/* Désactiver le curseur par défaut sur desktop */
+@media (min-width: 769px) {
+    body {
+        cursor: none;
+    }
+}
+
+/* Mobile - désactive le curseur personnalisé */
+@media (max-width: 768px) {
+    body {
+        cursor: auto;
+    }
+    .custom-cursor {
+        display: none !important;
+    }
+    .click-ripple {
+        display: none !important;
+    }
+}
+
+/* Styles pour les éléments interactifs spécifiques à Dream Skin */
+.cta-button,
+.experience-cta-button,
+.service-link,
+.portal-link,
+.floating-menu-trigger,
+.butterfly-menu,
+.reservation-button {
+    cursor: none;
+}
+
+/* Amélioration pour les liens de navigation */
+.portal-link.reservation-highlight {
+    cursor: none;
+}
+
+/* Styles pour les éléments de texte */
+h1, h2, h3, h4, h5, h6,
+p, span, div {
+    cursor: none;
+}
+
+/* Exception pour les éléments de formulaire */
+input, textarea, select {
+    cursor: text;
+}
+
+/* Exception pour les liens dans les textes */
+a {
+    cursor: none;
+}

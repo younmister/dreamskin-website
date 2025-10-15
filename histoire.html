@@ -1,0 +1,4848 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logos/Frame1.png">
+    <link rel="apple-touch-icon" href="logos/Frame1.png">
+    <link rel="shortcut icon" href="logos/Frame1.png">
+    
+    <title>Dream Skin - Notre Histoire</title>
+    <meta name="description" content="Découvrez l'histoire de Dream Skin, nos praticiennes expertes et nos valeurs. Un voyage sensoriel entre savoir-faire coréen et beauté intuitive.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Couleurs principales enrichies - harmonisées avec index.html */
+            --sage-green: #AFCFBA;
+            --sage-green-light: #C4D9BD;
+            --sage-green-dark: #9BB5A4;
+            
+            /* Tons neutres sophistiqués */
+            --pearl-white: #FEFEFE;
+            --warm-white: #FAFBFA;
+            --soft-cream: #F8F9F7;
+            
+            /* Accents subtils */
+            --whisper-green: rgba(175, 207, 186, 0.08);
+            --breath-green: rgba(175, 207, 186, 0.05);
+            
+            /* Ombres contextuelles */
+            --shadow-soft: 0 4px 20px rgba(175, 207, 186, 0.12);
+            --shadow-medium: 0 8px 30px rgba(175, 207, 186, 0.18);
+            --shadow-strong: 0 15px 50px rgba(175, 207, 186, 0.25);
+
+            /* Compatibilité */
+            --pure-white: var(--pearl-white);
+            --soft-gray: #DCCDDC;
+            --dark-green: #2C3E2D;
+            --text-dark: #333333;
+            --text-light: #666666;
+
+            /* Échelle harmonique basée sur le ratio doré 1.618 */
+            --text-xs: 0.75rem;    /* 12px */
+            --text-sm: 0.875rem;   /* 14px */
+            --text-base: 1rem;     /* 16px */
+            --text-lg: 1.125rem;   /* 18px */
+            --text-xl: 1.25rem;    /* 20px */
+            --text-2xl: 1.5rem;    /* 24px */
+            --text-3xl: 1.875rem;  /* 30px */
+            --text-4xl: 2.25rem;   /* 36px */
+            --text-5xl: 3rem;      /* 48px */
+            --text-6xl: 3.75rem;   /* 60px */
+            
+            /* Espacement basé sur une grille de 8px */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-24: 6rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--pure-white);
+        }
+
+        /* Floating Menu Trigger */
+        .floating-menu-trigger {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            width: 85px;
+            height: 85px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            z-index: 2000;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 
+                0 10px 30px rgba(175, 207, 186, 0.3),
+                0 0 0 1px rgba(175, 207, 186, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: floatGently 4s ease-in-out infinite;
+        }
+
+        .floating-menu-trigger:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 
+                0 20px 40px rgba(175, 207, 186, 0.4),
+                0 0 0 1px rgba(175, 207, 186, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 0 30px rgba(175, 207, 186, 0.3);
+        }
+
+        .floating-menu-trigger:active {
+            cursor: grabbing;
+        }
+
+        .floating-menu-trigger.dragging {
+            cursor: grabbing;
+            transform: scale(1.1);
+            box-shadow:
+                0 25px 50px rgba(175, 207, 186, 0.5),
+                0 0 0 2px rgba(175, 207, 186, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: none;
+            animation: none;
+        }
+
+        .trigger-butterfly {
+            width: 50px;
+            height: 50px;
+            fill: var(--sage-green);
+            transition: all 0.4s ease;
+            animation: butterflyWings 2s ease-in-out infinite;
+        }
+
+        .floating-menu-trigger:hover .trigger-butterfly {
+            fill: var(--dark-green);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .trigger-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--sage-green);
+            opacity: 0;
+            animation: pulseRing 3s ease-out infinite;
+        }
+
+        @keyframes floatGently {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-5px); }
+        }
+
+        @keyframes butterflyWings {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes pulseRing {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+
+        /* Portal Menu */
+        .portal-menu {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 450px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            z-index: 3000;
+            transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid rgba(175, 207, 186, 0.2);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-menu.open {
+            right: 0;
+        }
+
+        .portal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .portal-glow {
+            position: absolute;
+            top: 20%;
+            left: -50%;
+            width: 200%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, 
+                rgba(175, 207, 186, 0.1) 0%, 
+                rgba(175, 207, 186, 0.05) 40%, 
+                transparent 70%);
+            animation: portalGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes portalGlow {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
+        }
+
+        .portal-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation: floatParticle 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation: floatParticle 8s ease-in-out infinite 2s;
+        }
+
+        .particle:nth-child(3) {
+            top: 40%;
+            left: 60%;
+            animation: floatParticle 7s ease-in-out infinite 4s;
+        }
+
+        .particle:nth-child(4) {
+            top: 80%;
+            left: 30%;
+            animation: floatParticle 9s ease-in-out infinite 1s;
+        }
+
+        .particle:nth-child(5) {
+            top: 30%;
+            left: 70%;
+            animation: floatParticle 5s ease-in-out infinite 3s;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            25% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+            50% { transform: translateY(-10px) translateX(-15px); opacity: 0.6; }
+            75% { transform: translateY(-30px) translateX(5px); opacity: 0.9; }
+        }
+
+        .close-portal-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-portal-btn span {
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: var(--dark-green);
+            transition: all 0.3s ease;
+        }
+
+        .close-portal-btn span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .close-portal-btn span:last-child {
+            transform: rotate(-45deg);
+        }
+
+        .close-portal-btn:hover span {
+            background: var(--sage-green);
+            transform: rotate(45deg) scale(1.1);
+        }
+
+        .close-portal-btn:hover span:last-child {
+            transform: rotate(-45deg) scale(1.1);
+        }
+
+        .portal-content {
+            position: relative;
+            z-index: 5;
+            padding: 4rem 3rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .portal-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .portal-menu.open .portal-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .portal-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .portal-link {
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            text-decoration: none;
+            padding: 1rem 0;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-90deg);
+            transform-origin: center bottom;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portal-link.animate-in {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .portal-link:hover {
+            transform: translateY(0) rotateX(0deg) translateX(10px);
+            color: var(--sage-green);
+        }
+
+        .link-text {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .link-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sage-green), var(--dark-green));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-link:hover .link-underline {
+            width: 100%;
+        }
+
+        .portal-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(175, 207, 186, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .portal-link:hover::before {
+            left: 100%;
+        }
+
+        /* Styles spéciaux pour le bouton Réservation */
+        .portal-link.reservation-highlight {
+            background: linear-gradient(135deg, var(--sage-green), var(--dark-green));
+            color: white !important;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            margin: 0.5rem 0;
+            box-shadow: 
+                0 8px 25px rgba(175, 207, 186, 0.3),
+                0 4px 12px rgba(175, 207, 186, 0.2);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .portal-link.reservation-highlight::before {
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+        }
+
+        .portal-link.reservation-highlight:hover {
+            transform: translateY(0) rotateX(0deg) translateX(10px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(175, 207, 186, 0.4),
+                0 6px 18px rgba(175, 207, 186, 0.3);
+        }
+
+        .portal-link.reservation-highlight .link-text {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-link.reservation-highlight .link-underline {
+            background: rgba(255, 255, 255, 0.3);
+            height: 3px;
+        }
+
+        /* Animation de pulsation pour le bouton Réservation */
+        .portal-link.reservation-highlight::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .portal-link.reservation-highlight:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Portal Menu - EXPÉRIENCE IMMERSIVE */
+        .portal-menu {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 450px;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(215, 232, 210, 0.15), transparent 70%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 253, 249, 0.9));
+            backdrop-filter: blur(40px) saturate(1.2);
+            z-index: 3000;
+            transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid rgba(215, 232, 210, 0.3);
+            box-shadow: 
+                -30px 0 80px rgba(0, 0, 0, 0.15),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .portal-menu.open {
+            right: 0;
+        }
+
+        .portal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .portal-background::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 20% 30%, rgba(215, 232, 210, 0.8), transparent),
+                radial-gradient(1px 1px at 80% 70%, rgba(220, 205, 220, 0.6), transparent);
+            background-size: 50px 50px, 80px 80px;
+            animation: floatingParticles 20s ease-in-out infinite;
+        }
+
+        @keyframes floatingParticles {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-10px) translateX(5px); }
+            66% { transform: translateY(5px) translateX(-8px); }
+        }
+
+        .portal-glow {
+            position: absolute;
+            top: 20%;
+            left: -50%;
+            width: 200%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, 
+                rgba(215, 232, 210, 0.1) 0%, 
+                rgba(215, 232, 210, 0.05) 40%, 
+                transparent 70%);
+            animation: portalGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes portalGlow {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
+        }
+
+        .close-portal-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .close-portal-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .close-portal-btn span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 25px;
+            height: 2px;
+            background: var(--dark-green);
+            transition: all 0.3s ease;
+        }
+
+        .close-portal-btn span:first-child {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .close-portal-btn span:last-child {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .portal-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 2rem;
+            perspective: 1000px;
+        }
+
+        .portal-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .portal-menu.open .portal-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .portal-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        /* Liens avec effet magnétique */
+        .portal-link {
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            text-decoration: none;
+            padding: 1rem 0;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-90deg);
+            transform-origin: center bottom;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portal-link::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sage-green), transparent);
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .portal-link.animate-in {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .portal-link:hover::before {
+            width: 15px;
+        }
+
+        .portal-link:hover {
+            transform: translateY(0) rotateX(0deg) translateX(20px) scale(1.02);
+            color: var(--sage-green);
+            text-shadow: 0 4px 12px rgba(215, 232, 210, 0.3);
+        }
+
+        .link-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sage-green), var(--dark-green));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-link:hover .link-underline {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(175, 207, 186, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(220, 205, 220, 0.05) 0%, transparent 50%),
+                linear-gradient(to bottom, #fefefe, #f8fdf9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><defs><pattern id="marble" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="20" cy="20" r="1" fill="%23AFCFBA"/><circle cx="80" cy="40" r="0.5" fill="%23DCCDDC"/><circle cx="50" cy="70" r="1.5" fill="%23AFCFBA"/></pattern></defs><rect width="100" height="100" fill="url(%23marble)"/></svg>') repeat;
+            animation: marbleFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes marbleFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-2px) translateY(-1px); }
+            50% { transform: translateX(1px) translateY(-2px); }
+            75% { transform: translateX(-1px) translateY(1px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: heroFadeIn 1.2s ease-out both;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Titres avec meilleur tracking et leading */
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            font-weight: 200;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .hero-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--sage-green);
+            margin-bottom: 3rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .hero-visual {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            background: radial-gradient(circle, rgba(215, 232, 210, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: breathe 4s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .floating-particle:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation: floatParticle 8s ease-in-out infinite;
+        }
+
+        .floating-particle:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation: floatParticle 10s ease-in-out infinite reverse;
+        }
+
+        .floating-particle:nth-child(3) {
+            bottom: 30%;
+            left: 25%;
+            animation: floatParticle 12s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+            33% { transform: translateY(-30px) translateX(15px); opacity: 0.6; }
+            66% { transform: translateY(15px) translateX(-10px); opacity: 0.3; }
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Interactive Dialogue Section - EXPÉRIENCE RÉVOLUTIONNAIRE */
+        .dialogue-section {
+            min-height: 100vh;
+            padding: var(--space-24) 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(215, 232, 210, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 205, 220, 0.03) 0%, transparent 50%),
+                var(--pure-white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><defs><pattern id="breath" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="20" fill="none" stroke="%23D7E8D2" stroke-width="0.5" opacity="0.3"/><circle cx="150" cy="100" r="15" fill="none" stroke="%23DCCDDC" stroke-width="0.3" opacity="0.4"/><circle cx="100" cy="150" r="25" fill="none" stroke="%23D7E8D2" stroke-width="0.4" opacity="0.2"/></pattern></defs><rect width="200" height="200" fill="url(%23breath)"/></svg>') repeat;
+            animation: breathFloat 25s ease-in-out infinite;
+        }
+
+        @keyframes breathFloat {
+            0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+            33% { transform: translateX(-10px) translateY(-5px) scale(1.02); }
+            66% { transform: translateX(5px) translateY(-8px) scale(0.98); }
+        }
+
+        .story-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .story-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-title, .practitioners-title, .values-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            line-height: 1.15;
+            letter-spacing: 2px;
+            font-weight: 300;
+            color: var(--dark-green);
+            margin-bottom: 4rem;
+            text-transform: lowercase;
+            font-variant: small-caps;
+            position: relative;
+            text-align: center;
+        }
+
+        .story-title::after, .practitioners-title::after, .values-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .story-verses {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Story avec révélation progressive */
+        .story-verse {
+            font-size: var(--text-xl);
+            color: var(--text-dark);
+            line-height: 1.9;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            transform: translateY(60px) rotateX(15deg);
+            transform-origin: center bottom;
+            perspective: 1000px;
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: var(--space-6) var(--space-4);
+            position: relative;
+            backdrop-filter: blur(20px);
+            background: 
+                radial-gradient(circle at top left, rgba(215, 232, 210, 0.08), transparent 60%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 232, 0.9));
+            border: 1px solid rgba(215, 232, 210, 0.2);
+            box-shadow: 
+                var(--shadow-soft),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-radius: var(--space-4);
+            margin: var(--space-4) 0;
+        }
+
+        .story-content.animate .story-verse:nth-child(1) {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            transition-delay: 0.3s;
+        }
+
+        .story-content.animate .story-verse:nth-child(2) {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            transition-delay: 0.6s;
+        }
+
+        .story-content.animate .story-verse:nth-child(3) {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            transition-delay: 0.9s;
+        }
+
+        .story-verse::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--sage-green);
+            transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: inherit;
+        }
+
+        .story-content.animate .story-verse::before {
+            height: 60%;
+        }
+
+        /* Effet de typing progressif */
+        .story-verse::after {
+            content: '';
+            position: absolute;
+            right: var(--space-4);
+            bottom: var(--space-4);
+            width: 2px;
+            height: 1.2em;
+            background: var(--sage-green);
+            animation: typingCursor 1s infinite;
+            opacity: 0;
+        }
+
+        .story-content.animate .story-verse::after {
+            opacity: 1;
+            animation-delay: inherit;
+        }
+
+        @keyframes typingCursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .story-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .story-content.animate .story-signature {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 1.5s;
+        }
+
+        /* Dialogue Container */
+        .dialogue-container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dialogue-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: var(--space-16);
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleReveal 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Conversation Container */
+        .conversation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Message Container */
+        .message-container {
+            display: flex;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .message-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sofia reste à gauche (avatar à gauche, bulle à droite) */
+        .sofia-message {
+            justify-content: flex-start;
+        }
+
+        /* Islam complètement à droite (avatar à droite, bulle à gauche de l'avatar) */
+        .islam-message {
+            justify-content: flex-end;
+            flex-direction: row-reverse;
+            margin-left: 20%;
+        }
+
+        /* Message Header - Noms alignés avec les bulles */
+        .message-header {
+            position: absolute;
+            top: -25px;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--text-light);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sofia - nom à gauche de la bulle */
+        .sofia-message .message-header {
+            left: 100px; /* Position du début de la bulle */
+        }
+
+        /* Islam - nom aligné avec le début de la bulle (à droite) */
+        .islam-message .message-header {
+            right: 100px;
+        }
+
+        .message-container.visible .message-header {
+            opacity: 1;
+        }
+
+        /* Message Avatar */
+        .message-avatar {
+            margin: 0 1rem;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .character-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--sage-green);
+            box-shadow: 
+                0 8px 25px rgba(215, 232, 210, 0.3),
+                0 0 0 6px rgba(215, 232, 210, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .character-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(215, 232, 210, 0.4),
+                0 0 0 8px rgba(215, 232, 210, 0.15);
+        }
+
+        .character-circle.sofia {
+            background-image: url('images/Praticienne1.jpg');
+        }
+
+        .character-circle.islam {
+            background-image: url('images/Praticienne2.png');
+        }
+
+        /* Message Bubble */
+        .message-bubble {
+            max-width: 70%;
+            padding: 1.5rem 2rem;
+            border-radius: 25px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(215, 232, 210, 0.2);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* Bulle en mode "typing" - petite taille */
+        .message-bubble.typing {
+            padding: 0.8rem 1rem;
+            width: 80px;
+            max-width: 80px;
+            min-width: 80px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.8);
+            animation: bubbleGrow 0.5s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes bubbleGrow {
+            from {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            to {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+        }
+
+        .message-bubble.typing .typing-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+        }
+
+        /* Bulle en mode "message" - taille normale */
+        .message-bubble.message {
+            padding: 1.5rem 2rem;
+            max-width: 70%;
+            height: auto;
+            min-height: auto;
+            transform: scale(1);
+            animation: bubbleExpand 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Bulle d'Islam - expansion depuis la droite */
+        .islam-message .message-bubble {
+            transform-origin: right center;
+        }
+
+        .islam-message .message-bubble.typing {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .islam-message .message-bubble.message {
+            margin-left: auto;
+            margin-right: 0;
+            max-width: 85%;
+        }
+
+        @keyframes bubbleExpand {
+            from {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .message-bubble:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.12),
+                0 0 0 1px rgba(215, 232, 210, 0.3);
+        }
+
+        .sofia-bubble {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(215, 232, 210, 0.3);
+        }
+
+        .islam-bubble {
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.15) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border: 1px solid rgba(215, 232, 210, 0.4);
+        }
+
+        /* Bubble Tail - Petites flèches pointant vers les avatars */
+        .message-bubble::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 12px solid transparent;
+        }
+
+        /* Sofia - flèche pointant vers la gauche (vers l'avatar) */
+        .sofia-bubble::before {
+            left: -24px;
+            border-right-color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Islam - flèche pointant vers la droite (vers l'avatar) */
+        .islam-bubble::before {
+            right: -24px;
+            border-left-color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Typing Indicator avec animation fluide */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--sage-green);
+            animation: typingDots 1.4s infinite ease-in-out;
+            transform: scale(0.8);
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0s;
+        }
+
+        @keyframes typingDots {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+            opacity: 1;
+            }
+        }
+
+        .typing-indicator.hidden {
+            display: none;
+        }
+
+        /* Message Text */
+        .message-text {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            color: var(--text-light);
+            font-weight: 300;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .message-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Effet de frappe en temps réel */
+        .message-text.typing-effect {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message-text.typing-effect::after {
+            content: '|';
+            animation: typingCursor 1s infinite;
+            color: var(--sage-green);
+        }
+
+        @keyframes typingCursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .message-text em {
+            font-style: italic;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Conversation Controls */
+        .conversation-controls {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .transition-arrow {
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--dark-green) 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: var(--text-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(44, 62, 45, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: arrowPulse 2s infinite ease-in-out;
+        }
+
+        .transition-arrow.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .transition-arrow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(44, 62, 45, 0.4);
+            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            width: auto;
+            height: auto;
+            animation: none;
+        }
+
+        .arrow-icon {
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 1.5rem;
+        }
+
+        .transition-arrow:hover .arrow-icon {
+            transform: translateY(3px);
+            margin-right: 0.5rem;
+        }
+
+        .arrow-text {
+            opacity: 0;
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transition-arrow:hover .arrow-text {
+            opacity: 1;
+            max-width: 200px;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+                box-shadow: 0 8px 25px rgba(44, 62, 45, 0.3);
+            }
+            50% { 
+                transform: translateY(-3px) scale(1.05); 
+                box-shadow: 0 12px 35px rgba(44, 62, 45, 0.4);
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 12.7rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(175, 207, 186, 0.2);
+            border-radius: 50%;
+            color: var(--sage-green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1500;
+            box-shadow: 0 8px 20px rgba(175, 207, 186, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(175, 207, 186, 0.3);
+            box-shadow: 0 12px 30px rgba(175, 207, 186, 0.3);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ===========================================
+           ZEN SCROLL PROGRESS BAR - CSS
+           =========================================== */
+
+        /* Zen Scroll Progress Bar */
+        .zen-scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(175, 207, 186, 0.1);
+        }
+
+        .progress-fill-zen {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, 
+                rgba(175, 207, 186, 0.6) 0%, 
+                rgba(175, 207, 186, 0.8) 30%,
+                var(--sage-green) 60%,
+                rgba(175, 207, 186, 1) 90%,
+                rgba(220, 205, 220, 0.8) 100%);
+            transition: width 0.1s ease-out;
+            position: relative;
+            box-shadow: 
+                0 0 20px rgba(175, 207, 186, 0.3),
+                0 2px 10px rgba(175, 207, 186, 0.2),
+                0 4px 15px rgba(175, 207, 186, 0.4);
+        }
+
+        /* Sparkle effect on progress */
+        .progress-fill-zen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            animation: progressShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        /* Floating butterfly on progress bar */
+        .progress-butterfly {
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-image: url('logos/Frame1.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            animation: butterflyWings 2s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(175, 207, 186, 0.4));
+        }
+
+        .progress-fill-zen:hover .progress-butterfly {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        /* Zen particles following progress */
+        .zen-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .zen-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: zenParticleFloat 4s linear infinite;
+        }
+
+        @keyframes zenParticleFloat {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-4px) scale(1);
+            }
+            100% {
+                transform: translateY(-6px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Practitioners Section */
+        .practitioners-section {
+            padding: var(--space-24) 0;
+            background: 
+                radial-gradient(circle at 70% 20%, rgba(220, 205, 220, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 30% 80%, rgba(215, 232, 210, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(215, 232, 210, 0.02) 0%, var(--pure-white) 100%);
+            position: relative;
+        }
+
+        .practitioners-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .practitioners-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: var(--sage-green);
+        }
+
+        .practitioners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CARTES PRATICIENNES - RÉVÉLATION THÉÂTRALE */
+        .practitioner-card {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 253, 249, 0.8)),
+                radial-gradient(circle at bottom right, rgba(215, 232, 210, 0.1), transparent 60%);
+            backdrop-filter: blur(25px) saturate(1.1);
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(215, 232, 210, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            box-shadow: 
+                0 20px 40px rgba(215, 232, 210, 0.15),
+                0 8px 24px rgba(215, 232, 210, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .practitioner-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .practitioner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(215, 232, 210, 0.3);
+            border-color: rgba(215, 232, 210, 0.4);
+        }
+
+        .practitioner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: 1;
+        }
+
+        .practitioner-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Effet de lueur douce */
+        .practitioner-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(215, 232, 210, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+        }
+
+        .practitioner-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .practitioner-card:hover .card-image {
+            filter: blur(2px);
+            transform: translateX(-20px) scale(1.05);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        /* Effet de révélation avec masque circulaire */
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 60%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.95), rgba(248, 253, 249, 0.9));
+            backdrop-filter: blur(30px);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            clip-path: circle(0% at 100% 50%);
+            transition: clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 3;
+            border-left: 1px solid rgba(215, 232, 210, 0.3);
+        }
+
+        .practitioner-card:hover .card-overlay {
+            right: 0;
+            clip-path: circle(150% at 100% 50%);
+        }
+
+        .practitioner-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+            transition-delay: 0.2s;
+        }
+
+        .practitioner-card:hover .practitioner-name {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .practitioner-description {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+            transition-delay: 0.3s;
+        }
+
+        .practitioner-card:hover .practitioner-description {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .practitioner-description p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .specialty-item {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .specialty-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--sage-green);
+            border-radius: 50%;
+        }
+
+        .practitioner-mantra {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: var(--dark-green);
+            font-style: italic;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+            transition-delay: 0.4s;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .practitioner-card:hover .practitioner-mantra {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card-halo {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 27px;
+            background: linear-gradient(45deg, var(--sage-green), var(--soft-gray), var(--sage-green));
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: 0;
+        }
+
+        .practitioner-card:hover .card-halo {
+            opacity: 0.3;
+        }
+
+        /* Indicateur de tap pour mobile */
+        .practitioner-card .tap-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background: rgba(175, 207, 186, 0.9);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(175, 207, 186, 0.3);
+            animation: pulseTap 2s infinite;
+        }
+
+        .practitioner-card .tap-indicator svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        @keyframes pulseTap {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .practitioner-card .tap-text {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(175, 207, 186, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: none;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(175, 207, 186, 0.3);
+            animation: fadeInOut 3s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Phrase de transition */
+        .transition-text {
+            text-align: center;
+            font-style: italic;
+            font-size: var(--text-lg);
+            color: var(--text-light);
+            margin: var(--space-16) 0;
+            opacity: 0.8;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            animation: scrollDot 2s ease-in-out infinite;
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInScroll {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes scrollLine {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scrollDot {
+            0% {
+                top: 0;
+                opacity: 1;
+            }
+            50% {
+                top: 20px;
+                opacity: 0.5;
+            }
+            100% {
+                top: 40px;
+                opacity: 0;
+            }
+        }
+
+        /* Values Section refondée en "Nos Fondements" - ARCHITECTURE VISUELLE */
+        .values-section {
+            padding: var(--space-16) 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(215, 232, 210, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(220, 205, 220, 0.05) 0%, transparent 50%),
+                var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" opacity="0.015"><defs><pattern id="foundations" patternUnits="userSpaceOnUse" width="300" height="300"><circle cx="100" cy="100" r="50" fill="none" stroke="%23D7E8D2" stroke-width="0.3" opacity="0.4"/><circle cx="200" cy="200" r="30" fill="none" stroke="%23DCCDDC" stroke-width="0.2" opacity="0.3"/><path d="M50,250 Q150,200 250,250" fill="none" stroke="%23D7E8D2" stroke-width="0.4" opacity="0.2"/></pattern></defs><rect width="300" height="300" fill="url(%23foundations)"/></svg>') repeat;
+            animation: foundationsFloat 35s ease-in-out infinite;
+        }
+
+        @keyframes foundationsFloat {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            33% { transform: translateX(-8px) translateY(-4px) rotate(0.3deg); }
+            66% { transform: translateX(4px) translateY(-6px) rotate(-0.2deg); }
+        }
+
+        .values-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .values-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .values-intro {
+            text-align: center;
+            font-size: var(--text-lg);
+            color: var(--text-light);
+            margin-bottom: var(--space-16);
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .values-title.animate + .values-intro {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Piliers avec profondeur et élégance - Bordures identiques aux modals */
+        .foundation-pillar {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(215, 232, 210, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            opacity: 0;
+            transform: translateY(50px);
+            box-shadow: 
+                0 10px 30px rgba(215, 232, 210, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .foundation-pillar.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .foundation-pillar:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .foundation-pillar:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .foundation-pillar:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .foundation-pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+
+        .foundation-pillar:hover {
+            transform: translateY(-5px);
+            border-color: var(--sage-green);
+            box-shadow: 0 10px 30px rgba(44, 62, 45, 0.2);
+        }
+
+        .foundation-pillar:hover::before {
+            opacity: 1;
+        }
+
+        /* Effet de parallaxe sur l'icône */
+        .foundation-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--sage-green) 0%, #a1b892 50%, #8ea67d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 15px 35px rgba(215, 232, 210, 0.3),
+                0 5px 15px rgba(215, 232, 210, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+        }
+
+        .foundation-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .foundation-pillar:hover .foundation-icon {
+            transform: scale(1.05);
+            box-shadow: 
+                0 8px 20px rgba(215, 232, 210, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .foundation-pillar:hover .foundation-icon::before {
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .foundation-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+            stroke-width: 1.8;
+            fill: none;
+            transition: all 0.3s ease;
+        }
+
+        .foundation-pillar:hover .foundation-icon svg {
+            transform: scale(1.05);
+        }
+
+        .foundation-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .foundation-pillar:hover .foundation-name {
+            color: #2a3c2b;
+        }
+
+        .foundation-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+            transition: color 0.3s ease;
+        }
+
+        .foundation-pillar:hover .foundation-description {
+            color: var(--text-dark);
+        }
+
+        /* Effet de brillance au survol */
+        .foundation-pillar::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transform: rotate(45deg) translateX(-100%);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .foundation-pillar:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        /* Gallery Section refondée */
+        .gallery-section {
+            padding: var(--space-24) 0;
+            background: 
+                radial-gradient(circle at 70% 20%, rgba(220, 205, 220, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 30% 80%, rgba(215, 232, 210, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(215, 232, 210, 0.02) 0%, var(--pure-white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-intro.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 3rem;
+            line-height: 1.15;
+            letter-spacing: 2px;
+            font-weight: 300;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            text-transform: lowercase;
+            font-variant: small-caps;
+            position: relative;
+        }
+
+        .gallery-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .gallery-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+
+        .masonry-grid {
+            columns: 4;
+            column-gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .masonry-grid.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(215, 232, 210, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-tall {
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .gallery-item-tall img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Style pour le bouton CTA intégré dans la galerie */
+        .gallery-cta {
+            position: absolute;
+            /* POSITIONNEMENT LIBRE - Modifiez ces valeurs pour repositionner le bouton */
+            top: 77%;        /* Position verticale (77% = remonté de 2% supplémentaires vers le haut) */
+            left: 32%;       /* Position horizontale (32% = décalé de 2% supplémentaires vers la gauche) */
+            transform: translate(-50%, -50%); /* Centrage parfait du bouton */
+            z-index: 10;
+            /* Élargissement du conteneur pour éviter le débordement au survol */
+            padding: 2rem;
+            box-sizing: border-box;
+            /* Conteneur complètement invisible */
+            background: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Styles pour mobile - Bouton en dessous de la galerie */
+        @media (max-width: 768px) {
+            .gallery-cta {
+                position: static;
+                transform: none;
+                padding: 0.5rem 0 0 0;
+                margin-top: 0;
+                margin-bottom: 0 !important;
+                text-align: center;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+
+            .scroll-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 11.5rem;
+                left: 1.9rem;
+            }
+
+            .zen-scroll-progress {
+                height: 3px;
+            }
+
+            .progress-butterfly {
+                width: 14px;
+                height: 14px;
+                right: -10px;
+                box-shadow: none;
+            }
+
+            .gallery-section .container {
+                padding-bottom: 0;
+            }
+
+            /* Animation de scroll visible sur mobile */
+            .scroll-indicator {
+                display: flex;
+            }
+            
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .scroll-indicator::before {
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .scroll-indicator::before {
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .gallery-cta .cta-button {
+            padding: 1.1rem 2.2rem;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gallery-cta .cta-button {
+            display: inline-block;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--sage-green) 100%);
+            color: var(--pure-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(175, 207, 186, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            margin-top: 1.5rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .gallery-cta .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .gallery-cta .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(175, 207, 186, 0.5);
+            background: var(--sage-green);
+            border: none;
+        }
+
+        .gallery-cta .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* CTA Section - MICRO-INTERACTIONS PREMIUM */
+        .cta-section {
+            padding: var(--space-24) 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(215, 232, 210, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(220, 205, 220, 0.05) 0%, transparent 50%),
+                var(--pure-white);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cta-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-text {
+            font-size: var(--text-xl);
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        /* Bouton CTA avec animation liquide */
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--sage-green) 100%);
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: var(--shadow-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            animation: buttonBreathe 4s ease-in-out infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            transition: left 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        /* Effet de morphing au hover */
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-radius: 25px;
+            box-shadow: 
+                0 25px 50px rgba(215, 232, 210, 0.4),
+                0 15px 35px rgba(215, 232, 210, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Animation de pulsation subtile */
+        @keyframes buttonBreathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        /* ============================================
+           SCROLL INDICATOR ANIMATION
+           ============================================ */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: scrollIndicatorFloat 3s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .scroll-indicator::before {
+            content: 'Laissez-vous porter';
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            animation: scrollTextPulse 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .scroll-dots {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .scroll-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--dark-green);
+            border-radius: 50%;
+            opacity: 0.7; 
+            animation: scrollDotFall 2s ease-in-out infinite;
+        }
+
+        .scroll-dot:nth-child(1) { animation-delay: 0s; }
+        .scroll-dot:nth-child(2) { animation-delay: 0.2s; }
+        .scroll-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes scrollIndicatorFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes scrollTextPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        @keyframes scrollDotFall {
+            0% { 
+                opacity: 0.8; 
+                transform: translateY(0) scale(1);
+            }
+            50% { 
+                opacity: 0.3; 
+                transform: translateY(8px) scale(0.8);
+            }
+            100% { 
+                opacity: 0.8;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* =================================================================
+           RESPONSIVE DESIGN - SYSTÈME COMPLET MULTI-BREAKPOINTS
+           ================================================================= */
+
+        /* Mobile active state for practitioner cards */
+        .practitioner-card.mobile-active .card-image {
+            filter: blur(2px);
+            transform: translateY(-10px) scale(1.03);
+        }
+
+        .practitioner-card.mobile-active .card-overlay {
+            clip-path: circle(150% at 50% 50%);
+        }
+
+        .practitioner-card.mobile-active .practitioner-name,
+        .practitioner-card.mobile-active .practitioner-description,
+        .practitioner-card.mobile-active .practitioner-mantra {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =================================================================
+           DESKTOP LARGE (2560px et plus) - Ultra-large screens
+           ================================================================= */
+        @media (min-width: 2560px) {
+            :root {
+                --text-6xl: 5rem;
+                --text-5xl: 4rem;
+                --text-4xl: 3rem;
+            }
+
+            .container {
+                max-width: 1800px;
+            }
+
+            .practitioners-grid {
+                max-width: 1600px;
+                gap: 5rem;
+            }
+
+            .values-grid {
+                max-width: 1600px;
+            }
+        }
+
+        /* =================================================================
+           DESKTOP STANDARD (1441px - 2559px)
+           ================================================================= */
+        @media (min-width: 1441px) and (max-width: 2559px) {
+            .practitioners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+                gap: 4.5rem;
+            }
+        }
+
+        /* =================================================================
+           DESKTOP PETIT (1025px - 1440px)
+           ================================================================= */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .container {
+                max-width: 1200px;
+                padding: 0 clamp(1rem, 3vw, 2rem);
+            }
+
+            .practitioners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                gap: 3.5rem;
+                max-width: 1100px;
+            }
+
+            .practitioner-card {
+                height: 380px;
+            }
+
+            .values-grid {
+                gap: 2.5rem;
+                max-width: 1100px;
+            }
+
+            .masonry-grid {
+                columns: 4;
+            }
+        }
+
+        /* =================================================================
+           TABLETTE GRANDE (769px - 1024px) - iPad Pro, tablets
+           ================================================================= */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 clamp(1.5rem, 4vw, 3rem);
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.5rem, 3vw, 2rem);
+            }
+
+            .story-title,
+            .practitioners-title,
+            .values-title,
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+
+            .practitioners-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .practitioner-card {
+                height: clamp(380px, 50vw, 450px);
+            }
+
+            .card-overlay {
+                width: 65%;
+                padding: 2rem 1.75rem;
+            }
+
+            .practitioner-name {
+                font-size: 1.7rem;
+            }
+
+            .practitioner-description p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .practitioner-mantra {
+                font-size: 1.15rem;
+                padding: 1rem 1.4rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 550px;
+            }
+
+            .foundation-pillar {
+                padding: 2.75rem 2.25rem;
+            }
+
+            .masonry-grid {
+                columns: 3;
+                column-gap: 1.5rem;
+            }
+
+            .portal-menu {
+                width: 400px;
+                right: -400px;
+            }
+
+            .floating-menu-trigger {
+                width: 70px;
+                height: 70px;
+                right: 1.5rem;
+            }
+
+            .trigger-butterfly {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* =================================================================
+           TABLETTE PETITE + MOBILE GRAND (481px - 768px)
+           ================================================================= */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 0 clamp(1rem, 4vw, 2rem);
+            }
+
+            .floating-menu-trigger {
+                width: clamp(55px, 12vw, 65px);
+                height: clamp(55px, 12vw, 65px);
+                right: clamp(0.75rem, 3vw, 1.5rem);
+            }
+
+            .trigger-butterfly {
+                width: clamp(28px, 6vw, 32px);
+                height: clamp(28px, 6vw, 32px);
+            }
+
+            .portal-menu {
+                width: 85vw;
+                right: -85vw;
+            }
+
+            .portal-link {
+                font-size: clamp(1.3rem, 4vw, 1.6rem);
+            }
+
+            .hero {
+                min-height: 80vh;
+                height: auto;
+                padding: clamp(2rem, 5vw, 3rem) 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+                margin-bottom: 1.25rem;
+            }
+        }
+
+        /* Desktop (1025px-1440px) */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.25rem, 4vw, 1.75rem);
+            }
+
+            .story-title,
+            .practitioners-title,
+            .values-title,
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .story-verse {
+                font-size: clamp(1rem, 3vw, 1.15rem);
+                padding: clamp(1rem, 3vw, 1.5rem);
+                line-height: 1.8;
+            }
+
+            .dialogue-section {
+                padding: clamp(3rem, 8vw, 5rem) 0;
+            }
+
+            .dialogue-title {
+                font-size: 2.5rem;
+                margin-bottom: clamp(2rem, 5vw, 3rem);
+            }
+
+            .conversation-container {
+                padding: 1.5rem 0;
+            }
+
+            .message-container {
+                margin-bottom: 1.75rem;
+            }
+
+            .character-circle {
+                width: clamp(48px, 10vw, 58px);
+                height: clamp(48px, 10vw, 58px);
+                border-width: 2.5px;
+            }
+
+            .message-bubble {
+                max-width: 82%;
+                padding: clamp(1rem, 3vw, 1.4rem) clamp(1.25rem, 3.5vw, 1.75rem);
+                border-radius: 22px;
+            }
+
+            .message-text {
+                font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+                line-height: 1.7;
+            }
+
+            .message-header {
+                font-size: clamp(0.65rem, 2vw, 0.75rem);
+                top: -22px;
+            }
+
+            .sofia-message .message-header {
+                left: clamp(75px, 15vw, 90px);
+            }
+
+            .islam-message .message-header {
+                right: clamp(75px, 15vw, 90px);
+            }
+
+            .islam-message {
+                margin-left: 12%;
+            }
+
+            .transition-arrow {
+                width: clamp(52px, 12vw, 58px);
+                height: clamp(52px, 12vw, 58px);
+                padding: clamp(0.85rem, 2.5vw, 1rem);
+            }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 11.5rem;
+                left: 2.1rem;
+            }
+
+            .zen-scroll-progress {
+                height: 4px;
+            }
+            
+            .progress-butterfly {
+                width: 16px;
+                height: 16px;
+                right: -12px;
+            }
+
+            /* Section Praticiennes - TABLETTE */
+            .practitioners-section {
+                padding: clamp(4rem, 10vw, 6rem) 0;
+            }
+
+            .practitioners-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(2.5rem, 6vw, 3.5rem);
+                max-width: 550px;
+                margin: 0 auto;
+            }
+
+            .practitioner-card {
+                height: clamp(420px, 65vw, 520px);
+                border-radius: 22px;
+            }
+
+            .practitioner-card:hover .card-overlay,
+            .practitioner-card.mobile-active .card-overlay {
+                clip-path: circle(150% at 50% 50%);
+            }
+
+            /* Afficher les indicateurs de tap sur tablette */
+            .practitioner-card .tap-indicator,
+            .practitioner-card .tap-text {
+                display: flex;
+            }
+
+            .card-overlay {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                padding: clamp(2rem, 5vw, 2.75rem);
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(25px);
+                clip-path: circle(0% at 50% 50%);
+                transition: clip-path 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .practitioner-name {
+                font-size: clamp(1.5rem, 4.5vw, 1.85rem);
+                margin-bottom: 1.25rem;
+            }
+
+            .practitioner-description {
+                margin-bottom: 1.5rem;
+            }
+
+            .practitioner-description p {
+                font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+                line-height: 1.75;
+            }
+
+            .practitioner-mantra {
+                font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+                padding: clamp(0.9rem, 2.5vw, 1.1rem) clamp(1.2rem, 3.5vw, 1.5rem);
+                margin-top: 1.15rem;
+                border-radius: 14px;
+            }
+
+            /* Gestes tactiles */
+            .practitioner-card {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .practitioner-card:active {
+                transform: scale(0.98);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2.25rem;
+                max-width: 480px;
+            }
+
+            .foundation-pillar {
+                padding: clamp(2.25rem, 5vw, 2.75rem) clamp(1.75rem, 4vw, 2.25rem);
+            }
+
+            .foundation-icon {
+                width: clamp(52px, 12vw, 58px);
+                height: clamp(52px, 12vw, 58px);
+            }
+
+            .foundation-icon svg {
+                width: clamp(24px, 5vw, 28px);
+                height: clamp(24px, 5vw, 28px);
+            }
+
+            .foundation-name {
+                font-size: clamp(1.25rem, 3.5vw, 1.4rem);
+            }
+
+            .foundation-description {
+                font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+            }
+
+            .masonry-grid {
+                columns: 2;
+                column-gap: clamp(1rem, 3vw, 1.5rem);
+            }
+
+            .gallery-item {
+                margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            }
+
+            .cta-text {
+                font-size: clamp(1.05rem, 3vw, 1.2rem);
+            }
+
+            .cta-button {
+                padding: clamp(1rem, 3vw, 1.25rem) clamp(2rem, 5vw, 2.5rem);
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+            }
+        }
+
+        /* =================================================================
+           MOBILE GRAND (376px - 480px) - iPhone standard, Android mid
+           ================================================================= */
+        @media (min-width: 376px) and (max-width: 480px) {
+            .container {
+                padding: 0 clamp(1rem, 4vw, 1.5rem);
+            }
+
+            .floating-menu-trigger {
+                width: clamp(52px, 13vw, 60px);
+                height: clamp(52px, 13vw, 60px);
+                right: clamp(0.75rem, 3vw, 1rem);
+                top: 50%;
+            }
+
+            .trigger-butterfly {
+                width: clamp(26px, 6.5vw, 30px);
+                height: clamp(26px, 6.5vw, 30px);
+            }
+
+            .portal-menu {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .portal-link {
+                font-size: clamp(1.3rem, 5vw, 1.5rem);
+                padding: 0.85rem 0;
+            }
+
+            .hero {
+                min-height: 75vh;
+                padding: clamp(2rem, 6vw, 3rem) 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.15;
+                margin-bottom: 1.15rem;
+            }
+        }
+
+        /* Large Desktop (1441px+) */
+        @media (min-width: 1441px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.15rem, 4.5vw, 1.55rem);
+            }
+
+            .story-title,
+            .practitioners-title,
+            .values-title,
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .story-verse {
+                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+                padding: clamp(0.95rem, 3.5vw, 1.35rem);
+                line-height: 1.75;
+                border-radius: 15px;
+            }
+
+            .story-verse::before {
+                left: -12px;
+                width: 2.5px;
+            }
+
+            .story-verses {
+                gap: clamp(1.25rem, 4vw, 1.75rem);
+            }
+
+            .dialogue-section {
+                padding: clamp(3rem, 8vw, 4.5rem) 0;
+            }
+
+            .dialogue-title {
+                font-size: 2rem;
+                margin-bottom: clamp(2rem, 5vw, 2.75rem);
+            }
+
+            .conversation-container {
+                padding: 1.25rem 0;
+            }
+
+            .message-container {
+                margin-bottom: 1.65rem;
+            }
+
+            .character-circle {
+                width: clamp(46px, 11vw, 52px);
+                height: clamp(46px, 11vw, 52px);
+                border-width: 2px;
+            }
+
+            .message-avatar {
+                margin: 0 clamp(0.7rem, 2.5vw, 0.9rem);
+            }
+
+            .message-bubble {
+                max-width: 84%;
+                padding: clamp(1rem, 3.5vw, 1.3rem) clamp(1.2rem, 4vw, 1.6rem);
+                border-radius: 20px;
+            }
+
+            .message-bubble.typing {
+                padding: clamp(0.55rem, 2vw, 0.7rem) clamp(0.75rem, 2.5vw, 0.9rem);
+                width: clamp(62px, 16vw, 70px);
+                max-width: clamp(62px, 16vw, 70px);
+                min-width: clamp(62px, 16vw, 70px);
+                height: clamp(38px, 10vw, 44px);
+            }
+
+            .typing-indicator span {
+                width: clamp(5px, 1.5vw, 6px);
+                height: clamp(5px, 1.5vw, 6px);
+            }
+
+            .message-text {
+                font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+                line-height: 1.68;
+            }
+
+            .message-header {
+                font-size: clamp(0.65rem, 2.2vw, 0.72rem);
+                top: -20px;
+            }
+
+            .sofia-message .message-header {
+                left: clamp(72px, 17vw, 82px);
+            }
+
+            .islam-message .message-header {
+                right: clamp(72px, 17vw, 82px);
+            }
+
+            .islam-message {
+                margin-left: 10%;
+            }
+
+            .transition-arrow {
+                width: clamp(50px, 12.5vw, 56px);
+                height: clamp(50px, 12.5vw, 56px);
+                padding: clamp(0.8rem, 2.8vw, 0.95rem);
+            }
+
+            .arrow-icon {
+                font-size: clamp(1.3rem, 4vw, 1.45rem);
+            }
+
+            /* Section Praticiennes - MOBILE GRAND */
+            .practitioners-section {
+                padding: clamp(3.5rem, 9vw, 5rem) 0;
+            }
+
+            .practitioners-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(2.25rem, 6.5vw, 3rem);
+            }
+
+            .practitioner-card {
+                height: clamp(480px, 120vw, 580px);
+                border-radius: 20px;
+            }
+
+            .card-overlay {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                padding: clamp(2rem, 6vw, 2.75rem) clamp(1.5rem, 5vw, 2rem);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(25px);
+                clip-path: circle(0% at 50% 80%);
+                transition: clip-path 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .practitioner-card:hover .card-overlay,
+            .practitioner-card.mobile-active .card-overlay {
+                clip-path: circle(150% at 50% 80%);
+            }
+
+            /* Afficher les indicateurs de tap sur mobile grand */
+            .practitioner-card .tap-indicator,
+            .practitioner-card .tap-text {
+                display: flex;
+            }
+
+            .card-image {
+                object-position: center 25%;
+            }
+
+            .practitioner-name {
+                font-size: clamp(1.5rem, 5.5vw, 1.85rem);
+                margin-bottom: clamp(1.15rem, 3.5vw, 1.45rem);
+                line-height: 1.25;
+            }
+
+            .practitioner-description {
+                margin-bottom: clamp(1.35rem, 4vw, 1.65rem);
+            }
+
+            .practitioner-description p {
+                font-size: clamp(0.95rem, 3.5vw, 1.08rem);
+                line-height: 1.7;
+            }
+
+            .practitioner-mantra {
+                font-size: clamp(1.05rem, 3.8vw, 1.2rem);
+                padding: clamp(0.95rem, 3vw, 1.15rem) clamp(1.25rem, 4vw, 1.5rem);
+                margin-top: clamp(1rem, 3.5vw, 1.25rem);
+                border-radius: 13px;
+                line-height: 1.45;
+            }
+
+            /* Gestes tactiles optimisés */
+            .practitioner-card {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .practitioner-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(2rem, 5.5vw, 2.5rem);
+                max-width: 420px;
+            }
+
+            .foundation-pillar {
+                padding: clamp(2.15rem, 6vw, 2.65rem) clamp(1.65rem, 5vw, 2.05rem);
+                border-radius: 22px;
+            }
+
+            .foundation-icon {
+                width: clamp(48px, 12vw, 54px);
+                height: clamp(48px, 12vw, 54px);
+                margin-bottom: clamp(1.35rem, 4vw, 1.65rem);
+            }
+
+            .foundation-icon svg {
+                width: clamp(22px, 5.5vw, 26px);
+                height: clamp(22px, 5.5vw, 26px);
+            }
+
+            .foundation-name {
+                font-size: clamp(1.25rem, 4vw, 1.4rem);
+                margin-bottom: clamp(1.15rem, 3.5vw, 1.35rem);
+            }
+
+            .foundation-description {
+                font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+                line-height: 1.75;
+            }
+
+            .masonry-grid {
+                columns: 1;
+                column-gap: 0;
+            }
+
+            .gallery-item {
+                margin-bottom: clamp(1.15rem, 3.5vw, 1.45rem);
+                border-radius: 16px;
+            }
+
+            .gallery-cta {
+                margin-bottom: 0 !important;
+            }
+
+            /* Animation de scroll visible sur mobile */
+            .scroll-indicator {
+                display: flex;
+            }
+            
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .scroll-indicator::before {
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cta-section {
+                padding: clamp(2rem, 5vw, 3rem) 0;
+            }
+
+            .cta-text {
+                font-size: clamp(1.05rem, 3.5vw, 1.2rem);
+                line-height: 1.75;
+                margin-bottom: clamp(1.5rem, 4vw, 2rem);
+            }
+
+            .cta-button {
+                padding: clamp(1rem, 3.5vw, 1.2rem) clamp(2rem, 6vw, 2.5rem);
+                font-size: clamp(0.88rem, 2.8vw, 0.98rem);
+                border-radius: 40px;
+            }
+        }
+
+        /* =================================================================
+           MOBILE PETIT (320px - 375px) - iPhone SE, petits Android
+           ================================================================= */
+        @media (min-width: 320px) and (max-width: 375px) {
+            .container {
+                padding: 0 clamp(0.85rem, 4vw, 1.15rem);
+            }
+
+            .gallery-section .container {
+                padding-bottom: 0;
+            }
+
+            body {
+                font-size: 15px;
+            }
+
+            .floating-menu-trigger {
+                width: clamp(48px, 14vw, 55px);
+                height: clamp(48px, 14vw, 55px);
+                right: clamp(0.65rem, 3vw, 0.85rem);
+            }
+
+            .trigger-butterfly {
+                width: clamp(24px, 7vw, 28px);
+                height: clamp(24px, 7vw, 28px);
+            }
+
+            .portal-menu {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .portal-title {
+                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+                margin-bottom: 2.25rem;
+            }
+
+            .portal-link {
+                font-size: clamp(1.2rem, 5.5vw, 1.4rem);
+                padding: 0.75rem 0;
+                gap: 1.5rem;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: clamp(1.75rem, 6vw, 2.5rem) 0;
+            }
+
+            .hero-content {
+                padding: 0 clamp(1rem, 4vw, 1.5rem);
+            }
+
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.05rem, 5vw, 1.4rem);
+                line-height: 1.4;
+            }
+
+            .dialogue-section,
+            .practitioners-section,
+            .values-section {
+                padding: clamp(2.75rem, 8vw, 4rem) 0;
+            }
+
+            .gallery-section {
+                padding: clamp(2.75rem, 8vw, 4rem) 0 0 0;
+            }
+
+            .cta-section {
+                padding: clamp(1.5rem, 4vw, 2rem) 0;
+            }
+
+            .story-title,
+            .practitioners-title,
+            .values-title,
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: clamp(2rem, 6vw, 2.75rem);
+                line-height: 1.25;
+            }
+
+            .story-verse {
+                font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+                padding: clamp(0.9rem, 3.8vw, 1.25rem);
+                line-height: 1.7;
+                border-radius: 14px;
+                margin: clamp(0.75rem, 2.5vw, 1rem) 0;
+            }
+
+            .story-verse::before {
+                left: -10px;
+                width: 2px;
+            }
+
+            .story-verses {
+                gap: clamp(1.15rem, 4vw, 1.55rem);
+            }
+
+            .dialogue-title {
+                font-size: 2rem;
+                margin-bottom: clamp(1.85rem, 5.5vw, 2.5rem);
+            }
+
+            .conversation-container {
+                padding: 1.15rem 0;
+            }
+
+            .message-container {
+                margin-bottom: 1.55rem;
+            }
+
+            .character-circle {
+                width: clamp(42px, 12vw, 48px);
+                height: clamp(42px, 12vw, 48px);
+                border-width: 2px;
+            }
+
+            .message-avatar {
+                margin: 0 clamp(0.6rem, 2.5vw, 0.8rem);
+            }
+
+            .message-bubble {
+                max-width: 85%;
+                padding: clamp(0.95rem, 3.8vw, 1.2rem) clamp(1.15rem, 4.5vw, 1.5rem);
+                border-radius: 18px;
+            }
+
+            .message-bubble.typing {
+                padding: clamp(0.5rem, 2.2vw, 0.65rem) clamp(0.7rem, 2.8vw, 0.85rem);
+                width: clamp(58px, 17vw, 66px);
+                max-width: clamp(58px, 17vw, 66px);
+                min-width: clamp(58px, 17vw, 66px);
+                height: clamp(36px, 11vw, 42px);
+            }
+
+            .typing-indicator span {
+                width: clamp(4.5px, 1.6vw, 5.5px);
+                height: clamp(4.5px, 1.6vw, 5.5px);
+                gap: 3px;
+            }
+
+            .message-text {
+                font-size: clamp(0.88rem, 3.5vw, 1rem);
+                line-height: 1.65;
+            }
+
+            .message-header {
+                font-size: clamp(0.62rem, 2.3vw, 0.7rem);
+                top: -18px;
+                letter-spacing: 0.8px;
+            }
+
+            .sofia-message .message-header {
+                left: clamp(68px, 19vw, 78px);
+            }
+
+            .islam-message .message-header {
+                right: clamp(68px, 19vw, 78px);
+            }
+
+            .islam-message {
+                margin-left: 8%;
+            }
+
+            .islam-message .message-bubble.message {
+                max-width: 88%;
+            }
+
+            .transition-arrow {
+                width: clamp(48px, 13vw, 54px);
+                height: clamp(48px, 13vw, 54px);
+                padding: clamp(0.75rem, 3vw, 0.9rem);
+            }
+
+            .arrow-icon {
+                font-size: clamp(1.25rem, 4.5vw, 1.4rem);
+            }
+
+            /* Section Praticiennes - MOBILE PETIT */
+            .practitioners-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(2.15rem, 7vw, 2.85rem);
+            }
+
+            .practitioner-card {
+                height: clamp(500px, 135vw, 620px);
+                border-radius: 18px;
+            }
+
+            .card-overlay {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                padding: clamp(1.85rem, 6.5vw, 2.5rem) clamp(1.35rem, 5.5vw, 1.85rem);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(25px);
+                clip-path: circle(0% at 50% 85%);
+                transition: clip-path 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .practitioner-card:hover .card-overlay,
+            .practitioner-card.mobile-active .card-overlay {
+                clip-path: circle(150% at 50% 85%);
+            }
+
+            /* Afficher les indicateurs de tap sur mobile petit */
+            .practitioner-card .tap-indicator,
+            .practitioner-card .tap-text {
+                display: flex;
+            }
+
+            .practitioner-card:hover .card-image,
+            .practitioner-card.mobile-active .card-image {
+                filter: blur(1.5px);
+                transform: scale(1.03);
+            }
+
+            .practitioner-name {
+                font-size: clamp(1.45rem, 6vw, 1.8rem);
+                margin-bottom: clamp(1.05rem, 3.8vw, 1.35rem);
+                line-height: 1.25;
+            }
+
+            .practitioner-description {
+                margin-bottom: clamp(1.25rem, 4.2vw, 1.55rem);
+            }
+
+            .practitioner-description p {
+                font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+                line-height: 1.68;
+            }
+
+            .practitioner-mantra {
+                font-size: clamp(1rem, 4vw, 1.15rem);
+                padding: clamp(0.9rem, 3.2vw, 1.1rem) clamp(1.15rem, 4.5vw, 1.45rem);
+                margin-top: clamp(0.95rem, 3.5vw, 1.2rem);
+                border-radius: 12px;
+                line-height: 1.4;
+            }
+
+            /* Gestes tactiles optimisés */
+            .practitioner-card {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .practitioner-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: clamp(1.85rem, 6vw, 2.35rem);
+                max-width: 380px;
+            }
+
+            .foundation-pillar {
+                padding: clamp(2rem, 6.5vw, 2.5rem) clamp(1.55rem, 5.5vw, 1.95rem);
+                border-radius: 20px;
+            }
+
+            .foundation-icon {
+                width: clamp(44px, 13vw, 50px);
+                height: clamp(44px, 13vw, 50px);
+                margin-bottom: clamp(1.25rem, 4.2vw, 1.55rem);
+            }
+
+            .foundation-icon svg {
+                width: clamp(20px, 6vw, 24px);
+                height: clamp(20px, 6vw, 24px);
+            }
+
+            .foundation-name {
+                font-size: clamp(1.2rem, 4.5vw, 1.35rem);
+                margin-bottom: clamp(1.05rem, 3.8vw, 1.25rem);
+                line-height: 1.3;
+            }
+
+            .foundation-description {
+                font-size: clamp(0.9rem, 3.5vw, 1rem);
+                line-height: 1.72;
+            }
+
+            .masonry-grid {
+                columns: 1;
+                column-gap: 0;
+            }
+
+            .gallery-item {
+                margin-bottom: clamp(1.05rem, 3.8vw, 1.35rem);
+                border-radius: 15px;
+            }
+
+            .gallery-cta {
+                margin-bottom: 0 !important;
+            }
+
+            /* Animation de scroll visible sur mobile */
+            .scroll-indicator {
+                display: flex;
+            }
+            
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .scroll-indicator::before {
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cta-text {
+                font-size: clamp(1rem, 3.8vw, 1.15rem);
+                line-height: 1.72;
+                margin-bottom: clamp(1.5rem, 4.5vw, 2rem);
+            }
+
+            .cta-button {
+                padding: clamp(0.95rem, 3.8vw, 1.15rem) clamp(1.85rem, 6.5vw, 2.35rem);
+                font-size: clamp(0.85rem, 3vw, 0.95rem);
+                border-radius: 38px;
+                letter-spacing: 0.8px;
+            }
+        }
+
+        /* =================================================================
+           FOOTER RESPONSIVE
+           ================================================================= */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: clamp(1.75rem, 5vw, 2.25rem);
+                text-align: center;
+            }
+
+            .footer-section {
+                margin-bottom: clamp(1.5rem, 4vw, 2rem);
+            }
+
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+
+            .footer-section h3 {
+                font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+            }
+
+            .footer-section p {
+                font-size: clamp(0.82rem, 2.8vw, 0.92rem);
+            }
+
+            .footer-bottom p {
+                font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--sage-green) 100%);
+            color: var(--pure-white);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(175, 207, 186, 0.5), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.5rem;
+			font-weight: 300;
+			margin-bottom: 1rem;
+			color: var(--sage-green);
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+			text-transform: lowercase;
+			font-variant: small-caps;
+			letter-spacing: 2px;
+		}
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--sage-green);
+            text-shadow: 0 1px 5px rgba(175, 207, 186, 0.5);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(175, 207, 186, 0.2);
+            padding-top: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--pure-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(175, 207, 186, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--sage-green);
+        }
+
+        .footer-separator {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-section a,
+            .footer-section p {
+                font-size: 0.9rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .footer-separator {
+                display: none;
+            }
+        }
+    </style>
+    
+    <!-- Curseur personnalisé -->
+    <link rel="stylesheet" href="assets/css/custom-cursor.css">
+</head>
+<body>
+    <!-- Floating Menu Trigger -->
+    <!-- Zen Scroll Progress Bar -->
+    <div class="zen-scroll-progress">
+        <div class="progress-fill-zen">
+            <div class="progress-butterfly"></div>
+            <div class="progress-glow-zen"></div>
+            <div class="zen-particles"></div>
+        </div>
+    </div>
+
+    <div class="floating-menu-trigger" id="menuTrigger">
+        <img src="logos/Frame1.svg" class="trigger-butterfly" style="transform: scaleX(1);" alt="Bouton menu papillon Dream Skin - Accès à la navigation" />
+        <div class="trigger-pulse"></div>
+    </div>
+
+    <!-- Portal Menu Panel -->
+    <div class="portal-menu" id="portalMenu">
+        <div class="portal-background">
+            <div class="portal-glow"></div>
+            <div class="portal-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        </div>
+        <button class="close-portal-btn" id="closePortal">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="portal-content">
+            <div class="portal-title">Navigation</div>
+            <nav class="portal-nav">
+                <a href="index.html" class="portal-link" data-delay="0">
+                    <span class="link-text">Accueil</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="histoire.html" class="portal-link" data-delay="1">
+                    <span class="link-text">Notre histoire</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="prestations.html" class="portal-link" data-delay="2">
+                    <span class="link-text">Prestations</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="reservation.html" class="portal-link reservation-highlight" data-delay="3">
+                    <span class="link-text">Réservation</span>
+                    <div class="link-underline"></div>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-visual"></div>
+        <div class="floating-elements">
+            <div class="floating-particle"></div>
+            <div class="floating-particle"></div>
+            <div class="floating-particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Notre Histoire</h1>
+            <p class="hero-subtitle">Un voyage sensoriel entre savoir-faire coréen et beauté intuitive.</p>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-dots">
+                <div class="scroll-dot"></div>
+                <div class="scroll-dot"></div>
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dialogue Section - EXPÉRIENCE RÉVOLUTIONNAIRE -->
+    <section class="dialogue-section">
+        <div class="container">
+            <div class="dialogue-container">
+                <h2 class="dialogue-title">L'histoire d'un souffle réinventé</h2>
+                
+                <!-- Conversation Container -->
+                <div class="conversation-container">
+                    <!-- Message 1: Sofia - Avatar à gauche, bulle à droite -->
+                    <div class="message-container sofia-message" data-delay="500">
+                        <div class="message-header">Sofia</div>
+                        <div class="message-avatar">
+                    <div class="character-circle sofia"></div>
+                    </div>
+                        <div class="message-bubble sofia-bubble">
+                            <div class="typing-indicator" id="typing-1">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p class="message-text" id="text-1">Il existe parfois des lieux qui ne ressemblent à aucun autre. Dream Skin est né du besoin de créer un sanctuaire sensoriel, où chaque soin raconte une histoire, où le silence apaise, et où le toucher soigne.</p>
+                        </div>
+                </div>
+
+                    <!-- Message 2: Islam - Avatar à droite, bulle à gauche de l'avatar -->
+                    <div class="message-container islam-message" data-delay="0">
+                        <div class="message-header">Islam</div>
+                        <div class="message-avatar">
+                    <div class="character-circle islam"></div>
+                    </div>
+                        <div class="message-bubble islam-bubble">
+                            <div class="typing-indicator" id="typing-2">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p class="message-text" id="text-2">Ici, tout a été pensé pour éveiller, envelopper, réconcilier. Loin du tumulte, proche de l'essentiel. Plus qu'un institut, c'est une expérience de renaissance douce.</p>
+                        </div>
+                </div>
+
+                    <!-- Message 3: Sofia - Avatar à gauche, bulle à droite -->
+                    <div class="message-container sofia-message" data-delay="0">
+                        <div class="message-header">Sofia</div>
+                        <div class="message-avatar">
+                    <div class="character-circle sofia"></div>
+                        </div>
+                        <div class="message-bubble sofia-bubble">
+                            <div class="typing-indicator" id="typing-3">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p class="message-text" id="text-3">Un espace subtil, vivant, presque suspendu dans le temps — conçu pour que chaque visite devienne une parenthèse inoubliable...</p>
+                        </div>
+                    </div>
+
+                    <!-- Message 4: Islam - Avatar à droite, bulle à gauche de l'avatar -->
+                    <div class="message-container islam-message" data-delay="0">
+                        <div class="message-header">Islam</div>
+                        <div class="message-avatar">
+                    <div class="character-circle islam"></div>
+                    </div>
+                        <div class="message-bubble islam-bubble">
+                            <div class="typing-indicator" id="typing-4">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p class="message-text" id="text-4"><em>...où l'âme se retrouve.</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transition Arrow -->
+                <div class="conversation-controls">
+                    <button class="transition-arrow" id="next-section-btn">
+                        <span class="arrow-icon">↓</span>
+                        <span class="arrow-text">Découvrir nos expertes</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practitioners Section -->
+    <section class="practitioners-section">
+        <div class="container">
+            <h2 class="practitioners-title">Les expertes qui prennent soin de vous</h2>
+            <div class="practitioners-grid">
+                <div class="practitioner-card">
+                    <div class="card-halo"></div>
+                    <div class="card-image">
+                        <img src="images/Praticienne1.jpg" alt="Sofia - Praticienne Dream Skin">
+                    </div>
+                    <div class="card-overlay">
+                        <h3 class="practitioner-name">Sofia</h3>
+                        <div class="practitioner-description">
+                            <p>Sofia travaille dans la fluidité et le ressenti. Son approche instinctive crée des soins enveloppants où le corps s'abandonne naturellement.</p>
+                            </div>
+                        <p class="practitioner-mantra">"Je soigne avec les sens autant qu'avec les mains."</p>
+                    </div>
+                    <!-- Indicateurs de tap pour mobile -->
+                    <div class="tap-indicator">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
+                        </svg>
+                    </div>
+                    <div class="tap-text">Appuyez pour découvrir</div>
+                </div>
+
+                <div class="practitioner-card">
+                    <div class="card-halo"></div>
+                    <div class="card-image">
+                        <img src="images/Praticienne2.png" alt="Islam - Praticienne Dream Skin">
+                    </div>
+                    <div class="card-overlay">
+                        <h3 class="practitioner-name">Islam</h3>
+                        <div class="practitioner-description">
+                            <p>Passionnée et rigoureuse, Islam allie technique et intuition. Chaque soin devient une création précise, façonnée sur mesure pour sublimer la peau en profondeur.</p>
+                            </div>
+                        <p class="practitioner-mantra">"Je révèle la peau dans sa vérité, sans artifices."</p>
+                    </div>
+                    <!-- Indicateurs de tap pour mobile -->
+                    <div class="tap-indicator">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
+                        </svg>
+                    </div>
+                    <div class="tap-text">Appuyez pour découvrir</div>
+                </div>
+            </div>
+
+            <!-- Phrase de transition -->
+            <p class="transition-text">De leur savoir naît une vision du soin, guidée par des valeurs simples et essentiels.</p>
+        </div>
+    </section>
+
+    <!-- Values Section refondée en "Nos Fondements" -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="values-title">Nos fondements</h2>
+            <p class="values-intro">Voici les principes qui donnent vie à chaque rituel Dream Skin.</p>
+            <div class="values-grid">
+                <div class="foundation-pillar">
+                    <div class="foundation-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-check-icon lucide-search-check">
+                            <path d="m8 11 2 2 4-4"/>
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.3-4.3"/>
+                        </svg>
+                    </div>
+                    <h3 class="foundation-name">Sens du détail</h3>
+                    <p class="foundation-description">
+                        Rien n'est laissé au hasard. Chaque geste, chaque parfum, chaque texture est choisi avec précision pour créer une harmonie totale entre le corps, l'esprit et l'environnement.
+                    </p>
+                </div>
+                
+                <div class="foundation-pillar">
+                    <div class="foundation-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-pulse-icon lucide-heart-pulse">
+                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                            <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>
+                        </svg>
+                    </div>
+                    <h3 class="foundation-name">Connexion intérieure</h3>
+                    <p class="foundation-description">
+                        Chez Dream Skin, la beauté est une reconnexion. À soi. À sa respiration. À ses émotions. Nos soins sont des ponts vers une paix intérieure subtile mais puissante.
+                    </p>
+                </div>
+                
+                <div class="foundation-pillar">
+                    <div class="foundation-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flower-icon lucide-flower">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5"/>
+                            <path d="M12 7.5V9"/>
+                            <path d="M7.5 12H9"/>
+                            <path d="M16.5 12H15"/>
+                            <path d="M12 16.5V15"/>
+                            <path d="m8 8 1.88 1.88"/>
+                            <path d="M14.12 9.88 16 8"/>
+                            <path d="m8 16 1.88-1.88"/>
+                            <path d="M14.12 14.12 16 16"/>
+                        </svg>
+                    </div>
+                    <h3 class="foundation-name">Douce excellence</h3>
+                    <p class="foundation-description">
+                        L'expertise de nos mains s'allie à la délicatesse. Nous offrons des soins maîtrisés et enveloppants, pour que chaque visite laisse une empreinte apaisante et durable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-intro">
+                <h2 class="gallery-title">L'univers Dream Skin</h2>
+                <p class="gallery-subtitle">"Chaque geste est une offrande"</p>
+            </div>
+            <div class="masonry-grid">
+                <div class="gallery-item">
+                    <img src="images/praticienne-dreamskin.jpg" alt="Intérieur Dream Skin - Espace de soin">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fleurs-dreamskin.jpg" alt="Soin en action - Head Spa">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/produitsjeuDerm.jpg" alt="Textures naturelles - Produits de soin">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/dreamskin-coiffeuse.svg" alt="Matières naturelles - Ambiance zen">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/5.jpg" alt="Espace de détente - Atmosphère apaisante">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/6.jpg" alt="Détails soins - Textures douces">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/7.jpg" alt="Ambiance cocooning - Lumière douce">
+                </div>
+                <div class="gallery-item gallery-item-tall">
+                    <img src="images/miroir.jpg" alt="Rituels beauté - Moment présent">
+                </div>
+                <div class="gallery-item gallery-cta">
+                    <a href="prestations.html" class="cta-button">Découvrir nos prestations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        // Portal Menu Functionality
+        const menuTrigger = document.getElementById('menuTrigger');
+        const portalMenu = document.getElementById('portalMenu');
+        const closePortal = document.getElementById('closePortal');
+        const portalLinks = document.querySelectorAll('.portal-link');
+
+        function openPortalMenu() {
+            portalMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            
+            // Animate links in sequence
+            portalLinks.forEach((link, index) => {
+                const delay = parseInt(link.dataset.delay) * 150 + 400;
+                setTimeout(() => {
+                    link.classList.add('animate-in');
+                }, delay);
+            });
+        }
+
+        function closePortalMenu() {
+            portalMenu.classList.remove('open');
+            document.body.style.overflow = '';
+            
+            // Reset link animations
+            portalLinks.forEach(link => {
+                link.classList.remove('animate-in');
+            });
+        }
+
+        menuTrigger.addEventListener('click', openPortalMenu);
+        closePortal.addEventListener('click', closePortalMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (portalMenu.classList.contains('open')) {
+                const isClickInsideMenu = portalMenu.contains(event.target);
+                const isClickOnTrigger = menuTrigger.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnTrigger) {
+                    closePortalMenu();
+                }
+            }
+        });
+
+        // Close menu when clicking on a link
+        portalLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        closePortalMenu();
+                        setTimeout(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 300);
+                    }
+                } else {
+                    closePortalMenu();
+                }
+            });
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portalMenu.classList.contains('open')) {
+                closePortalMenu();
+            }
+        });
+
+        // Draggable floating menu for mobile only
+        function makeMenuDraggable() {
+            const menuTrigger = document.querySelector('.floating-menu-trigger');
+            if (!menuTrigger) return;
+
+            // Only enable drag on mobile devices
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1024;
+
+            if (!isMobile) return;
+
+            let isDragging = false;
+            let hasMoved = false;
+            let startX = 0, startY = 0;
+            let currentX = 0, currentY = 0;
+            let offsetX = 0, offsetY = 0;
+            let touchStartTime = 0;
+
+            // Restore saved position
+            const savedPosition = localStorage.getItem('dreamskin-menu-position');
+            if (savedPosition) {
+                try {
+                    const pos = JSON.parse(savedPosition);
+                    menuTrigger.style.right = 'auto';
+                    menuTrigger.style.left = pos.x + 'px';
+                    menuTrigger.style.top = pos.y + 'px';
+                    menuTrigger.style.transform = 'none';
+                } catch (e) {
+                    // Ignore errors
+                }
+            }
+
+            function handleTouchStart(e) {
+                isDragging = true;
+                hasMoved = false;
+                touchStartTime = Date.now();
+
+                const touch = e.touches[0];
+                const rect = menuTrigger.getBoundingClientRect();
+
+                startX = touch.clientX;
+                startY = touch.clientY;
+                offsetX = touch.clientX - rect.left;
+                offsetY = touch.clientY - rect.top;
+
+                // Initialize current position from element's current position
+                currentX = rect.left;
+                currentY = rect.top;
+
+                menuTrigger.style.transition = 'none';
+                menuTrigger.style.animation = 'none';
+                menuTrigger.classList.add('dragging');
+
+                // Prevent default immediately to stop context menu and text selection
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            function handleTouchMove(e) {
+                if (!isDragging) return;
+
+                const touch = e.touches[0];
+                const moveDistance = Math.abs(touch.clientX - startX) + Math.abs(touch.clientY - startY);
+
+                // Only mark as moved after a minimum movement (reduced threshold for better responsiveness)
+                if (moveDistance > 3) {
+                    hasMoved = true;
+                }
+
+                // Update position immediately, even for small movements
+                currentX = touch.clientX - offsetX;
+                currentY = touch.clientY - offsetY;
+
+                // Constrain to viewport with padding
+                const menuSize = menuTrigger.offsetWidth;
+                const maxX = window.innerWidth - menuSize;
+                const maxY = window.innerHeight - menuSize;
+
+                currentX = Math.max(0, Math.min(currentX, maxX));
+                currentY = Math.max(0, Math.min(currentY, maxY));
+
+                menuTrigger.style.right = 'auto';
+                menuTrigger.style.left = currentX + 'px';
+                menuTrigger.style.top = currentY + 'px';
+                menuTrigger.style.transform = 'none';
+
+                // Prevent scrolling and other touch behaviors
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            function handleTouchEnd(e) {
+                if (!isDragging) return;
+
+                const touchDuration = Date.now() - touchStartTime;
+                const moveDistance = Math.abs(currentX - (startX - offsetX)) + Math.abs(currentY - (startY - offsetY));
+
+                // If it was a quick tap with minimal movement, treat as click
+                if (touchDuration < 200 && moveDistance < 10 && !hasMoved) {
+                    // Restore original behavior for click
+                    menuTrigger.style.transition = '';
+                    menuTrigger.style.animation = '';
+                    menuTrigger.classList.remove('dragging');
+                    
+                    // Trigger click event
+                    setTimeout(() => {
+                        menuTrigger.click();
+                    }, 10);
+                } else {
+                    // Save position for next time
+                    localStorage.setItem('dreamskin-menu-position', JSON.stringify({
+                        x: currentX,
+                        y: currentY
+                    }));
+
+                    // Restore transitions and animations
+                    setTimeout(() => {
+                        menuTrigger.style.transition = '';
+                        menuTrigger.style.animation = '';
+                        menuTrigger.classList.remove('dragging');
+                    }, 100);
+                }
+
+                isDragging = false;
+                hasMoved = false;
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            // Add touch event listeners
+            menuTrigger.addEventListener('touchstart', handleTouchStart, { passive: false });
+            menuTrigger.addEventListener('touchmove', handleTouchMove, { passive: false });
+            menuTrigger.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+            // Prevent context menu on long press
+            menuTrigger.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+        }
+
+        // Initialize draggable menu when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            makeMenuDraggable();
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.story-content, .practitioners-title, .practitioner-card, .values-title, .values-intro, .foundation-pillar, .gallery-intro, .masonry-grid, .cta-content').forEach((el, index) => {
+            // Add staggered delay for cards and pillars
+            if (el.classList.contains('practitioner-card') || el.classList.contains('foundation-pillar')) {
+                el.style.transitionDelay = `${index * 0.1}s`;
+            }
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero visual and floating particles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroVisual = document.querySelector('.hero-visual');
+            const floatingParticles = document.querySelectorAll('.floating-particle');
+            
+            if (heroVisual) {
+                heroVisual.style.transform = `translate(-50%, -50%) scale(${1 + scrolled * 0.0005})`;
+            }
+            
+            floatingParticles.forEach((particle, index) => {
+                const speed = 0.5 + index * 0.2;
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+
+            // Zoom effect on gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                    const scale = 1 + (scrollProgress * 0.02);
+                    item.style.transform = `scale(${Math.min(scale, 1.02)})`;
+                }
+            });
+        });
+
+        // Mobile touch handling for practitioner cards
+        if ('ontouchstart' in window) {
+            const practitionerCards = document.querySelectorAll('.practitioner-card');
+            
+            practitionerCards.forEach(card => {
+                let isActive = false;
+                
+                card.addEventListener('touchstart', (e) => {
+                    if (!isActive) {
+                        e.preventDefault();
+                        // Close other cards
+                        practitionerCards.forEach(otherCard => {
+                            if (otherCard !== card) {
+                                otherCard.classList.remove('mobile-active');
+                            }
+                        });
+                        // Open this card
+                        card.classList.add('mobile-active');
+                        isActive = true;
+                    }
+                });
+                
+                // Close when tapping outside
+                document.addEventListener('touchstart', (e) => {
+                    if (!card.contains(e.target) && isActive) {
+                        card.classList.remove('mobile-active');
+                        isActive = false;
+                    }
+                });
+            });
+        }
+
+        // Interactive Conversation System - EXPÉRIENCE RÉVOLUTIONNAIRE
+        function initConversationSystem() {
+            const messages = document.querySelectorAll('.message-container');
+            const nextSectionBtn = document.getElementById('next-section-btn');
+            let isAnimating = false;
+
+            // Fonction pour l'effet de frappe lettre par lettre
+            function startTypingEffect(element, callback) {
+                const fullText = element.textContent;
+                element.textContent = '';
+                element.classList.add('typing-effect');
+                
+                let i = 0;
+                const typingInterval = setInterval(() => {
+                    if (i < fullText.length) {
+                        element.textContent += fullText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                        element.classList.remove('typing-effect');
+                        element.classList.add('visible');
+                        if (callback) callback();
+                    }
+                }, 30); // 30ms entre chaque lettre pour un effet naturel
+            }
+
+            function showMessage(index) {
+                if (index >= messages.length || isAnimating) return;
+                
+                isAnimating = true;
+                const message = messages[index];
+                const delay = parseInt(message.dataset.delay) || 0;
+                
+                    setTimeout(() => {
+                    // Show message container
+                    message.classList.add('visible');
+                    
+                    // Get elements
+                    const typingIndicator = message.querySelector('.typing-indicator');
+                    const messageText = message.querySelector('.message-text');
+                    const messageBubble = message.querySelector('.message-bubble');
+                    
+                    if (typingIndicator && messageText && messageBubble) {
+                        // Set bubble to typing mode (small size)
+                        messageBubble.classList.add('typing');
+                        messageBubble.classList.remove('message');
+                        
+                        // Calculate typing duration based on message index
+                        let typingDuration;
+                        if (index === 0) { // Message 1 (Sofia)
+                            typingDuration = 1800;
+                        } else if (index === 1) { // Message 2 (Islam)
+                            typingDuration = 1600;
+                        } else if (index === 2) { // Message 3 (Sofia)
+                            typingDuration = 1500;
+                        } else if (index === 3) { // Message 4 (Islam)
+                            typingDuration = 1000;
+                        } else {
+                            typingDuration = 1200; // Fallback
+                        }
+                        
+                        // After typing duration, expand bubble and show text
+                        setTimeout(() => {
+                            // Expand bubble to full size
+                            messageBubble.classList.remove('typing');
+                            messageBubble.classList.add('message');
+                            
+                            // Hide typing indicator and start typing effect
+                            setTimeout(() => {
+                                typingIndicator.classList.add('hidden');
+                                
+                                // Start typing effect
+                                startTypingEffect(messageText, () => {
+                                    isAnimating = false;
+                                    
+                                    // Show next message if not the last one
+                                    if (index < messages.length - 1) {
+                                        // Délai de 2s entre tous les messages pour laisser le temps de lire
+                                        setTimeout(() => showMessage(index + 1), 2000);
+                                    } else {
+                                        // If it's the last message, show the transition arrow
+                                        setTimeout(() => {
+                                            const transitionArrow = document.getElementById('next-section-btn');
+                                            if (transitionArrow) {
+                                                transitionArrow.classList.add('visible');
+                                            }
+                                        }, 500);
+                                    }
+                                });
+                            }, 75); // Small delay for smooth transition
+                        }, typingDuration);
+                    } else {
+                        isAnimating = false;
+                    }
+                }, delay);
+            }
+
+            function startConversation() {
+                // Hide transition arrow
+                const transitionArrow = document.getElementById('next-section-btn');
+                if (transitionArrow) {
+                    transitionArrow.classList.remove('visible');
+                }
+                
+                // Reset all messages
+                messages.forEach(message => {
+                    message.classList.remove('visible');
+                    const typingIndicator = message.querySelector('.typing-indicator');
+                    const messageText = message.querySelector('.message-text');
+                    const messageBubble = message.querySelector('.message-bubble');
+                    
+                    if (typingIndicator) typingIndicator.classList.remove('hidden');
+                    if (messageText) {
+                        messageText.classList.remove('visible', 'typing-effect');
+                        // Restaurer le texte complet pour l'effet de frappe
+                        const originalText = messageText.getAttribute('data-original-text');
+                        if (originalText) {
+                            messageText.textContent = originalText;
+                        }
+                    }
+                    if (messageBubble) {
+                        messageBubble.classList.remove('typing', 'message');
+                    }
+                });
+                
+                // Store original texts
+                messages.forEach(message => {
+                    const messageText = message.querySelector('.message-text');
+                    if (messageText && !messageText.getAttribute('data-original-text')) {
+                        messageText.setAttribute('data-original-text', messageText.textContent);
+                    }
+                });
+                
+                isAnimating = false;
+                
+                // Start with first message
+                showMessage(0);
+            }
+
+            // Transition arrow functionality
+            if (nextSectionBtn) {
+                nextSectionBtn.addEventListener('click', () => {
+                    // Scroll vers la section suivante
+                    const practitionersSection = document.querySelector('.practitioners-section');
+                    if (practitionersSection) {
+                        practitionersSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+
+            // Détection du scroll pour démarrer la conversation
+            let conversationStarted = false;
+            
+            function checkIfSectionVisible() {
+                const dialogueSection = document.querySelector('.dialogue-section');
+                if (!dialogueSection) return;
+                
+                const rect = dialogueSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Si la section est visible à 30% dans la fenêtre
+                if (rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.3) {
+                    if (!conversationStarted) {
+                        conversationStarted = true;
+                        startConversation();
+                    }
+                }
+            }
+            
+            // Écouter le scroll
+            window.addEventListener('scroll', checkIfSectionVisible);
+            window.addEventListener('resize', checkIfSectionVisible);
+            
+            // Vérifier immédiatement au chargement
+            checkIfSectionVisible();
+        }
+
+            // Initialize conversation system with scroll detection
+            initConversationSystem();
+
+            // Zen Scroll Progress Bar
+            function initZenProgressBar() {
+                const progressFill = document.querySelector('.progress-fill-zen');
+                const zenParticles = document.querySelector('.zen-particles');
+                
+                if (!progressFill) return;
+                
+                let particleInterval;
+                
+                function updateProgress() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+                    
+                    progressFill.style.width = scrollPercentage + '%';
+                    
+                    // Create zen particles when scrolling
+                    if (scrollPercentage > 0 && scrollPercentage < 100) {
+                        createZenParticle();
+                    }
+                }
+                
+                function createZenParticle() {
+                    if (!zenParticles) return;
+                    
+                    const particle = document.createElement('div');
+                    particle.className = 'zen-particle';
+                    
+                    // Position at the end of the progress bar
+                    const progressWidth = progressFill.offsetWidth;
+                    particle.style.left = Math.max(0, progressWidth - 10) + 'px';
+                    particle.style.top = '50%';
+                    
+                    zenParticles.appendChild(particle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 2000);
+                }
+                
+                // Throttled scroll event
+                let ticking = false;
+                
+                function onScroll() {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            updateProgress();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }
+                
+                window.addEventListener('scroll', onScroll);
+                
+                // Initial update
+                updateProgress();
+            }
+
+            // Initialize zen progress bar
+            initZenProgressBar();
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+					<img src="logos/Logo1.svg" alt="Dream Skin" style="max-width: 150px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+					<p>Institut de bien-être dédié à votre beauté intérieure et extérieure. Spécialistes du head spa, massage et skincare coréenne.</p>
+				</div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><a href="https://www.google.com/maps/search/5+rue+de+la+Liberté+95500+Gonesse" target="_blank" style="color: inherit; text-decoration: none;">5, rue de la Liberté<br>95500 Gonesse</a><br><br>
+                    <a href="tel:+33629338589" style="color: inherit; text-decoration: none;">06 29 33 85 89</a><br>
+                    <a href="mailto:contact@dreamskin.fr">contact@dreamskin.fr</a></p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/dreamskin.off/" target="_blank" class="social-link" title="Instagram Dream Skin">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/33629338589?text=Bonjour%20!%0AJ'aimerais%20réserver%20un%20moment%20de%20détente%20chez%20Dream%20Skin%20et%20j'aurais%20quelques%20questions." target="_blank" class="social-link" title="WhatsApp Dream Skin">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.085z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Horaires</h3>
+                    <p>Mardi - Dimanche : 10h - 20h<br><br>
+                    Fermé le lundi</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dream Skin. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="footer-separator">|</span>
+                    <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18,15 12,9 6,15"></polyline>
+        </svg>
+    </button>
+    
+    <!-- Curseur personnalisé -->
+    <script src="assets/js/custom-cursor.js"></script>
+    
+    <script>
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        let lastScrollTop = 0;
+        let isScrollingUp = false;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset;
+            
+            // Détecter la direction du scroll
+            if (currentScrollTop < lastScrollTop) {
+                // On remonte
+                isScrollingUp = true;
+            } else {
+                // On descend
+                isScrollingUp = false;
+            }
+            
+            // Afficher la flèche seulement si on a scrollé plus de 300px ET qu'on remonte
+            if (currentScrollTop > 300 && isScrollingUp) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+            
+            lastScrollTop = currentScrollTop;
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

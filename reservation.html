@@ -1,0 +1,4403 @@
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logos/Frame1.png">
+    <link rel="apple-touch-icon" href="logos/Frame1.png">
+    <link rel="shortcut icon" href="logos/Frame1.png">
+    
+    <title>Dream Skin - Réservation</title>
+    <meta name="description" content="Réservez votre moment de bien-être chez Dream Skin. Head spa, massage et skincare dans un univers apaisant et luxueux.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Couleurs principales - harmonisées avec home.html */
+            --sage-green: #AFCFBA;
+            --sage-green-light: #C4D9BD;
+            --sage-green-dark: #9BB5A4;
+            
+            /* Tons neutres sophistiqués */
+            --pearl-white: #FEFEFE;
+            --warm-white: #FAFBFA;
+            --soft-cream: #F8F9F7;
+            
+            /* Accents subtils */
+            --whisper-green: rgba(175, 207, 186, 0.08);
+            --breath-green: rgba(175, 207, 186, 0.05);
+            
+            /* Ombres contextuelles */
+            --shadow-soft: 0 4px 20px rgba(175, 207, 186, 0.12);
+            --shadow-medium: 0 8px 30px rgba(175, 207, 186, 0.18);
+            --shadow-strong: 0 15px 50px rgba(175, 207, 186, 0.25);
+
+            /* Compatibilité */
+            --pure-white: var(--pearl-white);
+            --soft-gray: #DCCDDC;
+            --dark-green: #2C3E2D;
+            --text-dark: #333333;
+            --text-light: #666666;
+
+            /* Échelle harmonique */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Espacement basé sur une grille de 8px */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-24: 6rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--pure-white);
+        }
+
+        /* Floating Menu Trigger */
+        .floating-menu-trigger {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            width: 85px;
+            height: 85px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            z-index: 2000;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 
+                0 10px 30px rgba(175, 207, 186, 0.3),
+                0 0 0 1px rgba(175, 207, 186, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: floatGently 4s ease-in-out infinite;
+        }
+
+        .floating-menu-trigger:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 
+                0 20px 40px rgba(175, 207, 186, 0.4),
+                0 0 0 1px rgba(175, 207, 186, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 0 30px rgba(175, 207, 186, 0.3);
+        }
+
+        .floating-menu-trigger:active {
+            cursor: grabbing;
+        }
+
+        .floating-menu-trigger.dragging {
+            cursor: grabbing;
+            transform: scale(1.1);
+            box-shadow:
+                0 25px 50px rgba(175, 207, 186, 0.5),
+                0 0 0 2px rgba(175, 207, 186, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: none;
+            animation: none;
+        }
+
+        .trigger-butterfly {
+            width: 50px;
+            height: 50px;
+            fill: var(--sage-green);
+            transition: all 0.4s ease;
+            animation: butterflyWings 2s ease-in-out infinite;
+        }
+
+        .floating-menu-trigger:hover .trigger-butterfly {
+            fill: var(--dark-green);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .trigger-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--sage-green);
+            opacity: 0;
+            animation: pulseRing 3s ease-out infinite;
+        }
+
+        @keyframes floatGently {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-5px); }
+        }
+
+        @keyframes butterflyWings {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes pulseRing {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+
+        /* Portal Menu */
+        .portal-menu {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 450px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            z-index: 3000;
+            transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid rgba(175, 207, 186, 0.2);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-menu.open {
+            right: 0;
+        }
+
+        .portal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .portal-glow {
+            position: absolute;
+            top: 20%;
+            left: -50%;
+            width: 200%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, 
+                rgba(175, 207, 186, 0.1) 0%, 
+                rgba(175, 207, 186, 0.05) 40%, 
+                transparent 70%);
+            animation: portalGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes portalGlow {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
+        }
+
+        .portal-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation: floatParticle 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(2) {
+            top: 40%;
+            right: 30%;
+            animation: floatParticle 8s ease-in-out infinite reverse;
+        }
+
+        .particle:nth-child(3) {
+            top: 60%;
+            left: 40%;
+            animation: floatParticle 7s ease-in-out infinite;
+        }
+
+        .particle:nth-child(4) {
+            top: 80%;
+            right: 20%;
+            animation: floatParticle 9s ease-in-out infinite reverse;
+        }
+
+        .particle:nth-child(5) {
+            top: 30%;
+            left: 60%;
+            animation: floatParticle 5s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            33% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+            66% { transform: translateY(10px) translateX(-5px); opacity: 0.5; }
+        }
+
+        .close-portal-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .close-portal-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .close-portal-btn span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: var(--dark-green);
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .close-portal-btn span:first-child {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .close-portal-btn span:last-child {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .portal-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 2rem;
+            perspective: 1000px;
+        }
+
+        .portal-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .portal-menu.open .portal-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .portal-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .portal-link {
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            text-decoration: none;
+            padding: 1rem 0;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-90deg);
+            transform-origin: center bottom;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portal-link.animate-in {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .portal-link:hover {
+            transform: translateY(0) rotateX(0deg) translateX(10px);
+            color: var(--sage-green);
+        }
+
+        .link-text {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .link-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sage-green), var(--dark-green));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-link:hover .link-underline {
+            width: 100%;
+        }
+
+        .portal-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(175, 207, 186, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .portal-link:hover::before {
+            left: 100%;
+        }
+
+        /* Styles spéciaux pour le bouton Réservation */
+        .portal-link.reservation-highlight {
+            background: linear-gradient(135deg, var(--sage-green), var(--dark-green));
+            color: white !important;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            margin: 0.5rem 0;
+            box-shadow: 
+                0 8px 25px rgba(175, 207, 186, 0.3),
+                0 4px 12px rgba(175, 207, 186, 0.2);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .portal-link.reservation-highlight::before {
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+        }
+
+        .portal-link.reservation-highlight:hover {
+            transform: translateY(0) rotateX(0deg) translateX(10px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(175, 207, 186, 0.4),
+                0 6px 18px rgba(175, 207, 186, 0.3);
+        }
+
+        .portal-link.reservation-highlight .link-text {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-link.reservation-highlight .link-underline {
+            background: rgba(255, 255, 255, 0.3);
+            height: 3px;
+        }
+
+        /* Animation de pulsation pour le bouton Réservation */
+        .portal-link.reservation-highlight::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .portal-link.reservation-highlight:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(175, 207, 186, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(220, 205, 220, 0.05) 0%, transparent 50%),
+                linear-gradient(to bottom, #fefefe, #f8fdf9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><defs><pattern id="marble" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="20" cy="20" r="1" fill="%23AFCFBA"/><circle cx="80" cy="40" r="0.5" fill="%23DCCDDC"/><circle cx="50" cy="70" r="1.5" fill="%23AFCFBA"/></pattern></defs><rect width="100" height="100" fill="url(%23marble)"/></svg>') repeat;
+            animation: marbleFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes marbleFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-2px) translateY(-1px); }
+            50% { transform: translateX(1px) translateY(-2px); }
+            75% { transform: translateX(-1px) translateY(1px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: heroFadeIn 1.2s ease-out both;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--text-xl);
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .hero-trust-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: heroFadeIn 1.2s ease-out 0.3s both;
+        }
+
+        /* Animation des cartes de confiance */
+        .trust-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 140px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .trust-card.animate-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .trust-card.animate-bounce {
+            animation: trustCardBounce 0.6s ease-out;
+        }
+
+        @keyframes trustCardBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Animation des compteurs */
+        .counter-animate {
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .trust-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .trust-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .trust-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .trust-platform {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .trust-external-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+            margin-left: auto;
+        }
+
+        .trust-rating {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .trust-reviews {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .google-logo {
+            color: #4285F4;
+        }
+
+        .treatwell-logo {
+            color: #8B5CF6;
+        }
+
+        .certification-logo {
+            color: var(--sage-green);
+        }
+
+
+
+
+
+        .hero-urgency {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(215, 232, 210, 0.15);
+            border: 1px solid rgba(215, 232, 210, 0.3);
+            border-radius: 30px;
+            font-size: var(--text-sm);
+            color: var(--dark-green);
+            font-weight: 500;
+            margin-top: 1rem;
+            animation: gentlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.95; }
+        }
+
+        .cta-button-hero {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--sage-green) 100%);
+            color: var(--pure-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(175, 207, 186, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button-hero:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(175, 207, 186, 0.4);
+            background: var(--sage-green);
+        }
+
+        .cta-button-hero:hover::before {
+            left: 100%;
+        }
+
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .floating-particle:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation: floatParticle 8s ease-in-out infinite;
+        }
+
+        .floating-particle:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation: floatParticle 10s ease-in-out infinite reverse;
+        }
+
+        .floating-particle:nth-child(3) {
+            bottom: 30%;
+            left: 25%;
+            animation: floatParticle 12s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+            33% { transform: translateY(-30px) translateX(15px); opacity: 0.6; }
+            66% { transform: translateY(15px) translateX(-10px); opacity: 0.3; }
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Quick Start Content integrated in reservation section */
+        .quick-start-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px) translateX(-12%);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .quick-start-content.animate {
+            opacity: 1;
+            transform: translateY(0) translateX(-12%);
+        }
+
+        .quick-start-illustration {
+            flex: 0 0 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        .quick-start-illustration svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 8px 20px rgba(215, 232, 210, 0.3));
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .quick-start-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .quick-start-description {
+            font-size: var(--text-lg);
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Reservation Widget Container */
+        .reservation-widget-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 253, 249, 0.9));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(215, 232, 210, 0.25);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reservation-widget-container.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        /* Treatwell Widget Styles */
+        .treatwell-widget-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 253, 249, 0.9));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(215, 232, 210, 0.25);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 2rem;
+        }
+
+        .treatwell-widget-container.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .treatwell-widget-container iframe {
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(215, 232, 210, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        .treatwell-widget-container iframe:hover {
+            box-shadow: 0 12px 40px rgba(215, 232, 210, 0.3);
+        }
+
+        .reservation-widget-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .reservation-widget-container:hover::before {
+            opacity: 1;
+        }
+
+        .widget-header {
+            padding: 2.5rem 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(215, 232, 210, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .widget-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: var(--sage-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 25px rgba(215, 232, 210, 0.3);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        .widget-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .widget-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            margin: 0;
+        }
+
+        .widget-body {
+            padding: 2rem 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .integration-status {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 253, 249, 0.9));
+            border: 1px solid rgba(215, 232, 210, 0.3);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .status-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .widget-preview {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .preview-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(215, 232, 210, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .preview-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(215, 232, 210, 0.2);
+            border-color: rgba(215, 232, 210, 0.3);
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: var(--sage-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .preview-step span {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .widget-footer {
+            padding: 2rem 3rem 2.5rem;
+            background: rgba(248, 253, 249, 0.5);
+            border-top: 1px solid rgba(215, 232, 210, 0.2);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .temporary-message {
+            font-size: var(--text-base);
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 253, 249, 0.9) 100%);
+            color: var(--dark-green);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(215, 232, 210, 0.3);
+            box-shadow: 0 4px 15px rgba(215, 232, 210, 0.2);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(215, 232, 210, 0.4);
+        }
+
+        .contact-link.whatsapp:hover {
+            background: #25D366;
+            color: white;
+        }
+
+        .contact-link.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: white;
+        }
+
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+            transition: all 0.3s ease;
+        }
+
+
+        /* Reservation Section */
+        .reservation-section {
+            padding: var(--space-24) 0;
+            background: var(--pure-white);
+            position: relative;
+        }
+
+        .reservation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(175, 207, 186, 0.3), transparent);
+        }
+
+        .reservation-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reservation-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reservation-title h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            margin-bottom: 2rem;
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 3px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        .reservation-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+
+        .old-placeholder {
+            max-width: 800px;
+            margin: 0 auto;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 253, 249, 0.9));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(215, 232, 210, 0.25);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .old-placeholder.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .old-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .old-placeholder:hover::before {
+            opacity: 1;
+        }
+
+        .old-placeholder-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--sage-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 15px 35px rgba(215, 232, 210, 0.3);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        .old-placeholder-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: white;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .old-placeholder-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .old-placeholder-text {
+            color: var(--text-light);
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .old-contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .old-contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--dark-green);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(215, 232, 210, 0.3);
+            box-shadow: 0 4px 15px rgba(215, 232, 210, 0.2);
+        }
+
+        .old-contact-link:hover {
+            transform: translateY(-3px);
+            background: var(--sage-green);
+            color: white;
+            box-shadow: 0 8px 25px rgba(215, 232, 210, 0.4);
+        }
+
+        .old-contact-link svg {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Emotional Branding Section */
+        .emotional-section {
+            padding: var(--space-16) 0;
+            background: var(--pure-white);
+            text-align: center;
+            position: relative;
+        }
+
+        .emotional-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .emotional-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emotional-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--sage-green);
+            line-height: 1.7;
+            font-weight: 500;
+            font-style: italic;
+            position: relative;
+            padding: 2rem;
+            background: 
+                radial-gradient(circle at center, rgba(215, 232, 210, 0.05), transparent 70%);
+            border-radius: 20px;
+        }
+
+        .emotional-text::before,
+        .emotional-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+            transform: translateY(-50%);
+        }
+
+        .emotional-text::before {
+            left: -60px;
+        }
+
+        .emotional-text::after {
+            right: -60px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 12.7rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(175, 207, 186, 0.2);
+            border-radius: 50%;
+            color: var(--sage-green);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1500;
+            box-shadow: 0 8px 20px rgba(175, 207, 186, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(175, 207, 186, 0.3);
+            box-shadow: 0 12px 30px rgba(175, 207, 186, 0.3);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ===========================================
+           ZEN SCROLL PROGRESS BAR - CSS
+           =========================================== */
+
+        /* Zen Scroll Progress Bar */
+        .zen-scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(175, 207, 186, 0.1);
+        }
+
+        .progress-fill-zen {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, 
+                rgba(175, 207, 186, 0.6) 0%, 
+                rgba(175, 207, 186, 0.8) 30%,
+                var(--sage-green) 60%,
+                rgba(175, 207, 186, 1) 90%,
+                rgba(220, 205, 220, 0.8) 100%);
+            transition: width 0.1s ease-out;
+            position: relative;
+            box-shadow: 
+                0 0 20px rgba(175, 207, 186, 0.3),
+                0 2px 10px rgba(175, 207, 186, 0.2),
+                0 4px 15px rgba(175, 207, 186, 0.4);
+        }
+
+        /* Sparkle effect on progress */
+        .progress-fill-zen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            animation: progressShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        /* Floating butterfly on progress bar */
+        .progress-butterfly {
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-image: url('logos/Frame1.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            animation: butterflyWings 2s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(175, 207, 186, 0.4));
+        }
+
+        .progress-fill-zen:hover .progress-butterfly {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        /* Zen particles following progress */
+        .zen-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .zen-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: zenParticleFloat 4s linear infinite;
+        }
+
+        @keyframes zenParticleFloat {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-4px) scale(1);
+            }
+            100% {
+                transform: translateY(-6px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 7.2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--sage-green) 0%, #90b386 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1900;
+            box-shadow: 0 8px 25px rgba(215, 232, 210, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-button.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(215, 232, 210, 0.4);
+            background: var(--sage-green);
+        }
+
+        .whatsapp-button svg {
+            width: 28px;
+            height: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover svg {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--dark-green) 0%, #1a2a1b 100%);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 62, 45, 0.3);
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 8px solid transparent;
+            border-left-color: #1a2a1b;
+        }
+
+        .whatsapp-button:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Sticky Booking CTA */
+        .sticky-booking-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 253, 249, 0.95));
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            box-shadow: 0 -4px 20px rgba(215, 232, 210, 0.3);
+            border-top: 1px solid rgba(215, 232, 210, 0.2);
+            z-index: 1800;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .sticky-booking-cta.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-cta-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-cta-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0;
+            }
+
+            .floating-menu-trigger {
+                right: 1rem;
+                width: 70px;
+                height: 70px;
+                top: 40%;
+                display: none; /* Caché par défaut sur mobile */
+            }
+
+            .portal-menu {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .portal-link {
+                font-size: 1.3rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .portal-link.reservation-highlight {
+                padding: 1rem 1.5rem;
+                font-size: 1.2rem;
+                margin: 0.3rem 0;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .footer-separator {
+                display: none;
+            }
+        }
+
+        .sticky-cta-text {
+            flex: 1;
+        }
+
+        .sticky-cta-title {
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--dark-green);
+            margin-bottom: 0.3rem;
+        }
+
+        .sticky-cta-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+        }
+
+        .sticky-cta-button {
+            padding: 1.2rem 2.8rem;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--sage-green) 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            white-space: nowrap;
+        }
+
+        .sticky-cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-strong);
+            background: var(--sage-green);
+        }
+
+        .sticky-cta-button:active {
+            transform: translateY(0) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, var(--pure-white), var(--soft-cream));
+            position: relative;
+        }
+
+        .testimonials-carousel {
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonials-container {
+            display: flex;
+            gap: 2rem;
+            animation: scrollTestimonials 50s linear infinite;
+            width: fit-content;
+        }
+
+        @keyframes scrollTestimonials {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .testimonials-title h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .testimonials-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(175, 207, 186, 0.1);
+            min-width: 380px;
+            max-width: 380px;
+            min-height: 280px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(175, 207, 186, 0.05) 0%, transparent 50%);
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(175, 207, 186, 0.2);
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+        }
+
+        .testimonial-rating {
+            color: var(--sage-green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            filter: drop-shadow(0 1px 3px rgba(175, 207, 186, 0.3));
+            position: relative;
+            z-index: 1;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            color: var(--sage-green);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .testimonial-author {
+            font-weight: 500;
+            color: var(--dark-green);
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+        }
+
+        .testimonials-cta {
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .testimonials-cta h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 2px;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+
+
+
+        .author-info {
+            text-align: center;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-treatment {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 8rem 2rem;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(175, 207, 186, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 205, 220, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(175, 207, 186, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+            position: relative;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(175, 207, 186, 0.3), transparent);
+        }
+
+        .faq-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .faq-title h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--dark-green);
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .faq-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(175, 207, 186, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(175, 207, 186, 0.2);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .faq-question span:first-child {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            margin: 0;
+            text-transform: lowercase;
+            font-variant: small-caps;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--sage-green);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            margin-left: 1rem;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: none;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 350px;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 0.5rem;
+        }
+
+        /* Booking Intro Section */
+        .booking-intro {
+            background: linear-gradient(135deg, rgba(215, 232, 210, 0.08), rgba(248, 253, 249, 0.5));
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            margin: 4rem 0 3rem 0;
+            border: 1px solid rgba(215, 232, 210, 0.2);
+        }
+
+        .booking-intro-title {
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .booking-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .booking-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 0.3rem;
+            font-size: var(--text-base);
+        }
+
+        .feature-description {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .reassurance-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(215, 232, 210, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .reassurance-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--text-sm);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .reassurance-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--sage-green);
+        }
+
+
+
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-green) 0%, #1a2a1b 100%);
+            color: var(--pure-white);
+            padding: var(--space-16) 0 var(--space-8);
+            position: relative;
+            overflow: hidden;
+            z-index: 3000;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(215, 232, 210, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(220, 205, 220, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: var(--space-8);
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--sage-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: var(--text-sm);
+        }
+
+        .footer-section a {
+            color: var(--sage-green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--sage-green-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(215, 232, 210, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: var(--text-xs);
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+                flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--sage-green);
+        }
+
+        .footer-separator {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: var(--text-sm);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+                justify-content: center;
+            }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--sage-green);
+            color: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(175, 207, 186, 0.3);
+        }
+
+        /* Large Desktop (1200px+) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 3.5rem;
+            }
+            
+            .reservation-title h2 {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* ============================================
+           SCROLL INDICATOR ANIMATION
+           ============================================ */
+        .scroll-indicator {
+            position: absolute;
+            bottom: -3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+                flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: scrollIndicatorFloat 3s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .scroll-indicator::before {
+            content: 'Laissez-vous porter';
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            animation: scrollTextPulse 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .scroll-dots {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .scroll-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--dark-green);
+            border-radius: 50%;
+            opacity: 0.7; 
+            animation: scrollDotFall 2s ease-in-out infinite;
+        }
+
+        .scroll-dot:nth-child(1) { animation-delay: 0s; }
+        .scroll-dot:nth-child(2) { animation-delay: 0.2s; }
+        .scroll-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes scrollIndicatorFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes scrollTextPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        @keyframes scrollDotFall {
+            0% { 
+                opacity: 0.8; 
+                transform: translateY(0) scale(1);
+            }
+            50% { 
+                opacity: 0.3; 
+                transform: translateY(8px) scale(0.8);
+            }
+            100% { 
+                opacity: 0.8;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Desktop (1024px - 1199px) */
+        @media (max-width: 1199px) and (min-width: 1025px) {
+            .container {
+                max-width: 1200px;
+            }
+        }
+
+        /* Tablet Landscape (768px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero-title {
+                font-size: 3.5rem;
+                letter-spacing: 3px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+            
+            .reservation-title h2 {
+                font-size: 2.8rem;
+            }
+            
+            .testimonials-title h2,
+            .faq-title h2 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-trust-bar {
+                gap: 1.5rem;
+            }
+            
+            .trust-card {
+                min-width: 200px;
+                padding: 1.2rem;
+            }
+            
+            .booking-features {
+                gap: 1.5rem;
+            }
+            
+            .booking-feature {
+                padding: 1.5rem;
+            }
+
+            .portal-link {
+                font-size: 1.5rem;
+            }
+
+            .portal-link.reservation-highlight {
+                padding: 1.1rem 1.8rem;
+                font-size: 1.4rem;
+                margin: 0.4rem 0;
+            }
+        }
+
+        /* Desktop - Uniform card sizes */
+        @media (min-width: 769px) {
+            .trust-card {
+                min-width: 200px;
+                flex: 1;
+                max-width: 200px;
+            }
+
+            .portal-link {
+                font-size: 1.75rem;
+            }
+
+            .portal-link.reservation-highlight {
+                padding: 1.15rem 1.9rem;
+                font-size: 1.6rem;
+                margin: 0.45rem 0;
+            }
+        }
+
+        /* Desktop - Grid layout for testimonials */
+        @media (min-width: 769px) {
+            .testimonials-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                animation: none;
+                width: 100%;
+            }
+            
+            /* Hide duplicate testimonial cards on desktop */
+            .testimonial-card:nth-child(n+4) {
+                display: none;
+            }
+        }
+
+        /* Tablet Portrait (481px - 768px) */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .hero {
+                height: 100vh;
+                padding: 2rem 1rem;
+            }
+            
+            .scroll-indicator {
+                bottom: -2.5rem;
+            }
+
+            .scroll-indicator::before {
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .testimonials-carousel {
+                margin-top: 1.5rem;
+                height: 340px;
+            }
+
+            .quick-start-content {
+                flex-direction: column;
+                gap: 2rem;
+                transform: translateY(50px);
+                text-align: center;
+            }
+            
+            .quick-start-content.animate {
+                transform: translateY(0);
+            }
+
+            .quick-start-illustration {
+                flex: none;
+                order: 1;
+            }
+            
+            .quick-start-text {
+                order: 2;
+            }
+            
+            .cta-button-hero {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 180px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-trust-bar {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .trust-card {
+                min-width: 250px;
+                padding: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .reservation-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .testimonials-title h2,
+            .faq-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .testimonials-section,
+            .faq-section {
+                padding: 6rem 2rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+                min-height: 320px;
+                min-width: 320px;
+                max-width: 320px;
+            }
+            
+            .testimonials-cta h3 {
+                font-size: 2.2rem;
+            }
+
+
+            .booking-intro {
+                margin: 3rem 0 2rem 0;
+                padding: 0 1rem;
+            }
+            
+            .booking-intro-title {
+                margin-top: 1.5rem;
+            }
+
+            .booking-features {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .booking-feature {
+                padding: 1.5rem;
+            }
+
+            .treatwell-widget-container {
+                margin: 3rem 1rem;
+            }
+
+            .treatwell-widget-container iframe {
+                height: 700px;
+            }
+
+            .sticky-booking-cta {
+                padding: 1rem;
+            }
+
+
+            .whatsapp-button {
+                width: 55px;
+                height: 55px;
+                bottom: 6rem;
+                left: 2.1rem;
+            }
+
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+
+            .footer-section:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Mobile Large (481px - 600px) */
+        @media (max-width: 600px) and (min-width: 481px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .quick-start-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                transform: translateY(50px);
+                text-align: center;
+            }
+
+            .quick-start-content.animate {
+                transform: translateY(0);
+            }
+            
+            .quick-start-illustration {
+                flex: none;
+                order: 1;
+            }
+            
+            .quick-start-text {
+                order: 2;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .reservation-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .testimonials-title h2,
+            .faq-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .trust-card {
+                min-width: 220px;
+                padding: 0.8rem;
+            }
+
+            .trust-platform {
+                font-size: 0.9rem;
+            }
+
+            .trust-rating {
+                font-size: 1.1rem;
+            }
+
+            .trust-reviews {
+                font-size: 0.8rem;
+            }
+            
+            .booking-intro-title {
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* Mobile Medium (401px - 480px) */
+        @media (max-width: 480px) and (min-width: 401px) {
+            .hero {
+                height: 100vh;
+                padding: 1.5rem 1rem;
+            }
+
+            .quick-start-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                transform: translateY(50px);
+                text-align: center;
+            }
+            
+            .quick-start-content.animate {
+                transform: translateY(0);
+            }
+
+            .quick-start-illustration {
+                flex: none;
+                order: 1;
+            }
+            
+            .quick-start-text {
+                order: 2;
+            }
+            
+            .cta-button-hero {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-trust-bar {
+                gap: 0.8rem;
+                margin-top: 1.5rem;
+            }
+
+            .trust-card {
+                min-width: 180px;
+                padding: 0.8rem;
+            }
+
+            .trust-logo {
+                width: 24px;
+                height: 24px;
+            }
+
+            .trust-platform {
+                font-size: 0.8rem;
+            }
+
+            .trust-rating {
+                font-size: 1rem;
+            }
+
+            .trust-reviews {
+                font-size: 0.7rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .reservation-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonials-title h2,
+            .faq-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonials-section,
+            .faq-section {
+                padding: 4rem 1rem;
+            }
+            
+            .testimonials-carousel {
+                margin-top: 1.8rem;
+                height: 360px;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+                min-width: 300px;
+                max-width: 300px;
+                min-height: 340px;
+            }
+            
+            .testimonials-cta h3 {
+                font-size: 2rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            .testimonial-rating {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+
+            .booking-intro {
+                margin: 2rem 0 1.5rem 0;
+                padding: 0 1rem;
+            }
+
+            .booking-intro-title {
+                font-size: 1.3rem;
+                margin-top: 1.5rem;
+            }
+
+            .booking-features {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            .booking-feature {
+                padding: 1.2rem;
+            }
+
+            .feature-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .feature-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .feature-title {
+                font-size: 1rem;
+            }
+
+            .feature-description {
+                font-size: 0.85rem;
+            }
+
+            .treatwell-widget-container {
+                margin: 2rem 0.5rem;
+            }
+
+            .treatwell-widget-container iframe {
+                height: 600px;
+            }
+
+            .faq-item {
+                margin-bottom: 0.8rem;
+            }
+
+            .faq-question {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .faq-question span:first-child {
+                font-size: 1rem;
+            }
+
+            .faq-icon {
+                font-size: 1.3rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+
+            .faq-answer p {
+                font-size: 0.9rem;
+            }
+
+            .sticky-booking-cta {
+                padding: 0.8rem 1rem;
+            }
+
+            .sticky-cta-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .sticky-cta-button {
+                padding: 1.3rem 2.5rem;
+                font-size: 1.15rem;
+                min-width: 240px;
+                font-weight: 600;
+            }
+
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                bottom: 6rem;
+                left: 2.1rem;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 11.5rem;
+                left: 2.1rem;
+            }
+
+            .zen-scroll-progress {
+                height: 4px;
+            }
+            
+            .progress-butterfly {
+                width: 16px;
+                height: 16px;
+                right: -12px;
+            }
+
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
+
+            .footer-content {
+                gap: 1.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-section p {
+                font-size: 0.85rem;
+            }
+
+            .social-link {
+                width: 35px;
+                height: 35px;
+            }
+
+            .social-link svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* Mobile Small (≤400px) */
+        @media (max-width: 400px) {
+            .hero {
+                height: 100vh;
+                padding: 1rem 0.5rem;
+            }
+
+            .quick-start-content {
+                flex-direction: column;
+                gap: 1rem;
+                transform: translateY(50px);
+                text-align: center;
+            }
+            
+            .quick-start-content.animate {
+                transform: translateY(0);
+            }
+            
+            .quick-start-illustration {
+                flex: none;
+                order: 1;
+            }
+            
+            .quick-start-text {
+                order: 2;
+            }
+
+            .cta-button-hero {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 0.5px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-trust-bar {
+                gap: 0.5rem;
+                margin-top: 2.5rem;
+            }
+
+            .trust-card {
+                min-width: 150px;
+                padding: 0.6rem;
+            }
+            
+            /* Espacement uniforme entre les cartes Google/Treatwell et Satisfaction sur mobile */
+            .trust-card:nth-child(3) {
+                margin-top: 0.5rem;
+            }
+
+            .trust-logo {
+                width: 20px;
+                height: 20px;
+            }
+
+            .trust-platform {
+                font-size: 0.7rem;
+            }
+
+            .trust-rating {
+                font-size: 0.9rem;
+            }
+
+            .trust-reviews {
+                font-size: 0.6rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .reservation-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .testimonials-title h2,
+            .faq-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .testimonials-section,
+            .faq-section {
+                padding: 3rem 0.5rem;
+            }
+            
+            .testimonials-carousel {
+                margin-top: 2rem;
+                height: 380px;
+            }
+
+            .testimonial-card {
+                padding: 1.2rem;
+                min-width: 280px;
+                max-width: 280px;
+                min-height: 360px;
+            }
+            
+            .testimonials-cta h3 {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .testimonial-rating {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+
+            .booking-intro {
+                margin: 1.5rem 0 1rem 0;
+                padding: 0 0.5rem;
+            }
+
+            .booking-intro-title {
+                font-size: 1.2rem;
+                margin-top: 1.5rem;
+            }
+
+            .booking-features {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .booking-feature {
+                padding: 1rem;
+            }
+
+            .feature-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .feature-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .feature-title {
+                font-size: 0.9rem;
+            }
+
+            .feature-description {
+                font-size: 0.8rem;
+            }
+
+            .treatwell-widget-container {
+                margin: 1.5rem 0.25rem;
+            }
+
+            .treatwell-widget-container iframe {
+                height: 550px;
+            }
+
+            .faq-question {
+                padding: 1rem 1.2rem;
+            }
+
+            .faq-question span:first-child {
+                font-size: 0.9rem;
+            }
+
+            .faq-icon {
+                font-size: 1.2rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.2rem 1.2rem 1.2rem;
+            }
+
+            .faq-answer p {
+                font-size: 0.85rem;
+            }
+
+            .sticky-booking-cta {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .sticky-cta-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .sticky-cta-button {
+                padding: 1.4rem 2.2rem;
+                font-size: 1.2rem;
+                min-width: 260px;
+                font-weight: 700;
+            }
+
+            .whatsapp-button {
+                width: 45px;
+                height: 45px;
+                bottom: 6rem;
+                left: 1.9rem;
+            }
+
+            .scroll-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 11.5rem;
+                left: 1.9rem;
+            }
+
+            .zen-scroll-progress {
+                height: 3px;
+            }
+
+            .progress-butterfly {
+                width: 14px;
+                height: 14px;
+                right: -10px;
+            }
+
+        .footer {
+                padding: 2.5rem 0 1rem;
+            }
+
+            .footer-content {
+                gap: 1rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+            }
+
+            .social-link {
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-link svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            /* Ensure all interactive elements are at least 44x44px */
+            .cta-button-hero {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.875rem 2rem;
+            }
+        }
+
+        /* Rotation prompt overlay for mobile */
+        .rotation-prompt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .rotation-prompt-overlay.visible {
+            display: flex;
+            opacity: 1;
+            animation: fadeInOverlay 0.5s ease forwards;
+        }
+
+        .rotation-prompt-overlay.hiding {
+            opacity: 0;
+        }
+
+        .rotation-prompt-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 320px;
+        }
+
+        .phone-rotation-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            animation: rotatePhone 2s ease-in-out infinite;
+        }
+
+        .phone-rotation-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--sage-green);
+            filter: drop-shadow(0 4px 12px rgba(175, 207, 186, 0.3));
+        }
+
+        .rotation-prompt-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .rotation-prompt-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .rotation-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .rotation-arrow {
+            width: 30px;
+            height: 30px;
+            opacity: 0.6;
+            animation: pulseArrow 1.5s ease-in-out infinite;
+        }
+
+        .rotation-arrow:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .rotation-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--sage-green);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes fadeInOverlay {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotatePhone {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-15deg);
+            }
+            50% {
+                transform: rotate(0deg);
+            }
+            75% {
+                transform: rotate(90deg) scale(1.1);
+            }
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rotation-prompt-overlay,
+            .phone-rotation-icon,
+            .rotation-arrow {
+                animation: none;
+            }
+
+            .phone-rotation-icon {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .rotation-prompt-overlay {
+                display: none !important;
+            }
+        }
+    </style>
+    
+    <!-- Curseur personnalisé -->
+    <link rel="stylesheet" href="assets/css/custom-cursor.css">
+</head>
+<body>
+    <!-- Rotation Prompt Overlay -->
+    <div class="rotation-prompt-overlay" id="rotationPrompt">
+        <div class="rotation-prompt-content">
+            <div class="phone-rotation-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="currentColor" stroke-width="1.5" fill="none"></rect>
+                    <line x1="12" y1="18" x2="12" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+                </svg>
+            </div>
+            <h3 class="rotation-prompt-title">Tournez votre téléphone</h3>
+            <p class="rotation-prompt-subtitle">Pour une meilleure expérience de réservation, veuillez basculer en mode paysage</p>
+            <div class="rotation-arrows">
+                <div class="rotation-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="rotation-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zen Scroll Progress Bar -->
+    <div class="zen-scroll-progress">
+        <div class="progress-fill-zen" style="width: 0%;">
+            <div class="progress-butterfly"></div>
+            <div class="progress-glow-zen"></div>
+            <div class="zen-particles"></div>
+        </div>
+    </div>
+
+    <!-- Floating Menu Trigger -->
+    <div class="floating-menu-trigger" id="menuTrigger" style="display: flex;">
+        <img src="logos/Frame1.svg" alt="Menu" class="trigger-butterfly" style="transform: scaleX(1);">
+        <div class="trigger-pulse"></div>
+    </div>
+
+    <!-- Portal Menu Panel -->
+    <div class="portal-menu" id="portalMenu">
+        <div class="portal-background">
+            <div class="portal-glow"></div>
+            <div class="portal-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+        <button class="close-portal-btn" id="closePortal">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="portal-content">
+            <div class="portal-title">Navigation</div>
+            <nav class="portal-nav">
+                <a href="home.html" class="portal-link" data-delay="0">
+                    <span class="link-text">Accueil</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="histoire.html" class="portal-link" data-delay="1">
+                    <span class="link-text">Notre Histoire</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="prestations8.html" class="portal-link" data-delay="2">
+                    <span class="link-text">Prestations</span>
+                    <div class="link-underline"></div>
+                </a>
+                <a href="reservation.html" class="portal-link reservation-highlight" data-delay="3">
+                    <span class="link-text">Réservation</span>
+                    <div class="link-underline"></div>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="floating-elements">
+            <div class="floating-particle"></div>
+            <div class="floating-particle"></div>
+            <div class="floating-particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Réservez votre rituel de soin</h1>
+            <p class="hero-subtitle">Choisissez votre soin, et du reste nous prendrons soin. </p>
+            <div class="hero-trust-bar">
+                <a href="https://www.google.com/search?client=firefox-b-d&amp;sca_esv=99331a272fb6ecba&amp;tbm=lcl&amp;sxsrf=AE3TifOJgAngZOvEk0737wG9TzlHrSbWiQ:1760013244211&amp;q=Dream+Skin+%28100%25+femmes%29+Avis&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDCwNDQ0MTExNjEyszC0NAaCDYyMrxhlXYpSE3MVgrMz8xQ0DA0MVBXSUnNzU4s1FRzLMosXseKXBwDCa6WlWwAAAA&amp;rldimm=18091144434268193333&amp;hl=fr-FR&amp;sa=X&amp;ved=2ahUKEwj4peKhkJeQAxVdVqQEHWGMACQQ9fQKegQIYBAF#lkt=LocalPoiReviews" target="_blank" class="trust-card animate-in animate-bounce" id="google-card">
+                    <div class="trust-card-header">
+                        <svg class="trust-logo" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"></path>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"></path>
+                    </svg>
+                        <span class="trust-platform">Google</span>
+                        <svg class="trust-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        </svg>
+                </div>
+                    <div class="trust-rating counter-animate" id="google-rating">5/5</div>
+                    <div class="trust-reviews counter-animate" id="google-reviews">10 avis</div>
+                </a>
+                
+                <a href="https://www.treatwell.fr/salon/dream-skin-100-femmes/" target="_blank" class="trust-card animate-in animate-bounce" id="treatwell-card">
+                    <div class="trust-card-header">
+                        <img src="https://www.treatwell.fr/partenaires/wp-content/uploads/sites/6/2025/01/favicon-300x300.png" alt="Treatwell" class="trust-logo" width="20" height="20">
+                        <span class="trust-platform">Treatwell</span>
+                        <svg class="trust-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                    </svg>
+                </div>
+                    <div class="trust-rating counter-animate" id="treatwell-rating">5/5</div>
+                    <div class="trust-reviews counter-animate" id="treatwell-reviews">5 avis</div>
+                </a>
+                
+                <div class="trust-card animate-in animate-bounce" id="satisfaction-card">
+                    <div class="trust-card-header">
+                        <svg class="trust-logo certification-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                        <span class="trust-platform">Satisfaction</span>
+                </div>
+                    <div class="trust-rating counter-animate" id="satisfaction-rating">100%</div>
+                    <div class="trust-reviews counter-animate" id="satisfaction-reviews">Clientes satisfaites</div>
+            </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-dots">
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section" id="reservation">
+        <div class="container">
+            <div class="reservation-title animate">
+                <h2>Créez votre parenthèse beauté</h2>
+            </div>
+
+            <!-- Quick Start Content integrated -->
+            <div class="quick-start-content animate">
+                <div class="quick-start-illustration">
+                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="60" r="50" fill="rgba(215, 232, 210, 0.1)" stroke="rgba(215, 232, 210, 0.3)" stroke-width="2"></circle>
+                        <path d="M40 60c0-11.046 8.954-20 20-20s20 8.954 20 20" stroke="var(--sage-green)" stroke-width="3" stroke-linecap="round"></path>
+                        <circle cx="45" cy="55" r="3" fill="var(--sage-green)" opacity="0.7"></circle>
+                        <circle cx="75" cy="55" r="3" fill="var(--sage-green)" opacity="0.7"></circle>
+                        <path d="M50 70c5 8 15 8 20 0" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round"></path>
+                        <path d="M35 45c-5-8 0-15 8-12" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round" opacity="0.5"></path>
+                        <path d="M85 45c5-8 0-15-8-12" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round" opacity="0.5"></path>
+                    </svg>
+                </div>
+                <div class="quick-start-text">
+                    <p class="quick-start-description">
+                        Quelques secondes suffisent pour vous offrir une pause de pure sérénité. 
+                        Sélectionnez votre soin, votre créneau, et laissez-nous prendre soin de vous.
+                    </p>
+                    <a href="#treatwell-widget" class="cta-button-hero">Choisir mon soin</a>
+                </div>
+            </div>
+
+            <!-- Booking Intro -->
+            <div class="booking-intro">
+                <h3 class="booking-intro-title">Réservez en toute sérénité</h3>
+                <div class="booking-features">
+                    <div class="booking-feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9 12l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">Interface simple</div>
+                            <div class="feature-description">Confirmation immédiate en moins de 2 minutes</div>
+                        </div>
+                    </div>
+                    <div class="booking-feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <path d="M9 12l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">100% sécurisé</div>
+                            <div class="feature-description">Paiement protégé via Treatwell</div>
+                        </div>
+                    </div>
+                    <div class="booking-feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">Modification flexible</div>
+                            <div class="feature-description">Ajustez ou annulez facilement votre rendez-vous</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="treatwell-widget-container" id="treatwell-widget">
+                <iframe src="https://widget.treatwell.fr/salon/493723/menu/" width="100%" height="800" frameborder="0" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(215, 232, 210, 0.2);" title="Réservation Dream Skin">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-title">
+                <h2>Elles ont adoré leur expérience</h2>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"Un massage de qualité, je me suis littéralement endormie. L'endroit qu'il manquait dans nos environs🫶🏼 j'ai hâte de faire encore d'autres prestations 😍"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Sirine</div>
+                            <div class="author-treatment">Massage relaxant</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"J'ai testé le Head Spa Dream, par Islam. C'était une première pour moi, et loin d'être la dernière... J'ai appris des choses sur le cuir chevelu également, je reviendrai sans hésiter. Accueil + propreté 11/10. Je recommande à 100% ! Un havre de paix !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Nadia</div>
+                            <div class="author-treatment">Head Spa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"Merci pour ce soin d'exception. Une équipe au top, professionnelle, très à l'écoute et bienveillante. Un grand merci encore pour cette expérience régénérante, je recommande à 100%. Sensation de bien être absolue. Très bel institut. À très bientôt."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Barbara</div>
+                            <div class="author-treatment">Skincare coréenne</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Duplicate testimonials for seamless loop -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"Un massage de qualité, je me suis littéralement endormie. L'endroit qu'il manquait dans nos environs🫶🏼 j'ai hâte de faire encore d'autres prestations 😍"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Sirine</div>
+                            <div class="author-treatment">Massage relaxant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"J'ai testé le Head Spa Dream, par Islam. C'était une première pour moi, et loin d'être la dernière. J'étais incroyablement surprise, je m'attendais à un simple massage mais c'est bien plus que ça ... J'ai appris des choses sur le cuir chevelu également, je reviendrai sans hésiter. Accueil + propreté 11/10. Je recommande à 100% ! Un havre de paix !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Nadia</div>
+                            <div class="author-treatment">Head Spa</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">"Merci pour ce soin d'exception. Une équipe au top, professionnelle, très à l'écoute et bienveillante. Un grand merci encore pour cette expérience régénérante, je recommande à 100%. Sensation de bien être absolue. Très bel institut. À très bientôt."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Barbara</div>
+                            <div class="author-treatment">Skincare coréenne</div>
+                </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="testimonials-cta">
+                <h3>Pourquoi pas vous ?</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-title">
+                <h2>Questions fréquentes</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment réserver mon rendez-vous ?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La réservation est très simple. Sélectionnez le soin qui vous intéresse dans le widget ci-dessus, choisissez une date et heure disponibles, puis confirmez votre rendez-vous. Vous recevrez une confirmation immédiate par email.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Puis-je modifier ou annuler ma réservation ?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument ! Vous pouvez modifier ou annuler votre rendez-vous facilement via le lien dans votre email de confirmation ou en nous contactant directement. Nous vous demandons simplement de nous prévenir au moins 24h à l'avance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Dois-je payer maintenant ?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Non, aucun paiement n'est requis lors de la réservation. Vous règlerez directement à l'institut après votre soin. Nous acceptons les paiements par carte bancaire, espèces et chèques.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Que dois-je apporter pour mon rendez-vous ?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Rien du tout ! Nous fournissons tout le nécessaire : serviettes, produits de soin, et même une tisane pour prolonger votre pause. Venez simplement avec l'envie de vous faire chouchouter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sticky Booking CTA -->
+    <div class="sticky-booking-cta" id="stickyBookingCta">
+        <div class="sticky-cta-content">
+            <div class="sticky-cta-text">
+                <div class="sticky-cta-subtitle">Réservation simple et sécurisée</div>
+            </div>
+            <button class="sticky-cta-button" onclick="document.getElementById('treatwell-widget').scrollIntoView({behavior: 'smooth'})">Réserver maintenant</button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <button class="whatsapp-button" id="whatsappButton" onclick="openWhatsApp()">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"></path>
+        </svg>
+        <div class="whatsapp-tooltip">Une question ?</div>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18,15 12,9 6,15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // Portal Menu Functionality
+        const menuTrigger = document.getElementById('menuTrigger');
+        const portalMenu = document.getElementById('portalMenu');
+        const closePortal = document.getElementById('closePortal');
+        const portalLinks = document.querySelectorAll('.portal-link');
+
+        // Drag and Drop functionality for floating menu
+        let isDragging = false;
+        let startX, startY, startLeft, startTop;
+
+        function startDrag(e) {
+            isDragging = true;
+            menuTrigger.classList.add('dragging');
+            
+            const rect = menuTrigger.getBoundingClientRect();
+            startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+            startY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
+            startLeft = rect.left;
+            startTop = rect.top;
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchmove', drag);
+            document.addEventListener('touchend', stopDrag);
+            
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+            const currentY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+            
+            const deltaX = currentX - startX;
+            const deltaY = currentY - startY;
+            
+            const newLeft = startLeft + deltaX;
+            const newTop = startTop + deltaY;
+            
+            // Constrain to viewport
+            const maxLeft = window.innerWidth - menuTrigger.offsetWidth;
+            const maxTop = window.innerHeight - menuTrigger.offsetHeight;
+            
+            const constrainedLeft = Math.max(0, Math.min(newLeft, maxLeft));
+            const constrainedTop = Math.max(0, Math.min(newTop, maxTop));
+            
+            menuTrigger.style.left = constrainedLeft + 'px';
+            menuTrigger.style.top = constrainedTop + 'px';
+            menuTrigger.style.right = 'auto';
+            menuTrigger.style.transform = 'none';
+        }
+
+        function stopDrag() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            menuTrigger.classList.remove('dragging');
+            
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchmove', drag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+
+        menuTrigger.addEventListener('mousedown', startDrag);
+        menuTrigger.addEventListener('touchstart', startDrag);
+
+        function openPortalMenu() {
+            portalMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            
+            // Animate links in sequence
+            portalLinks.forEach((link, index) => {
+                const delay = parseInt(link.dataset.delay) * 150 + 400;
+                setTimeout(() => {
+                    link.classList.add('animate-in');
+                }, delay);
+            });
+        }
+
+        function closePortalMenu() {
+            portalMenu.classList.remove('open');
+            document.body.style.overflow = '';
+            
+            // Reset link animations
+            portalLinks.forEach(link => {
+                link.classList.remove('animate-in');
+            });
+        }
+
+        menuTrigger.addEventListener('click', openPortalMenu);
+        closePortal.addEventListener('click', closePortalMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (portalMenu.classList.contains('open')) {
+                const isClickInsideMenu = portalMenu.contains(event.target);
+                const isClickOnTrigger = menuTrigger.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnTrigger) {
+                    closePortalMenu();
+                }
+            }
+        });
+
+        // Close menu when clicking on a link
+        portalLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        closePortalMenu();
+                        setTimeout(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 300);
+                    }
+                } else {
+                    closePortalMenu();
+                }
+            });
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portalMenu.classList.contains('open')) {
+                closePortalMenu();
+            }
+        });
+
+        // Smooth scrolling for CTA buttons
+        document.querySelectorAll('a[href^="#treatwell-widget"], a[href^="#reservation"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Sticky Booking CTA functionality
+        const stickyBookingCta = document.getElementById('stickyBookingCta');
+        const treatwellWidget = document.getElementById('treatwell-widget');
+        const whatsappButton = document.getElementById('whatsappButton');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
+            const widgetTop = treatwellWidget.getBoundingClientRect().top;
+            const widgetInView = widgetTop < window.innerHeight && widgetTop > 0;
+
+            // Floating menu trigger logic - hide in hero on mobile, show after first section
+            const menuTrigger = document.getElementById('menuTrigger');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // On mobile, hide in hero, show after first section
+                if (heroBottom > 0) {
+                    menuTrigger.style.display = 'none';
+                } else {
+                    menuTrigger.style.display = 'flex';
+                }
+            } else {
+                // On desktop, always show
+                menuTrigger.style.display = 'flex';
+            }
+
+            // Sticky CTA logic - only show after Treatwell widget
+            const widgetBottom = treatwellWidget.getBoundingClientRect().bottom;
+            if (widgetBottom < 0) {
+                stickyBookingCta.classList.add('visible');
+            } else {
+                stickyBookingCta.classList.remove('visible');
+            }
+
+            // WhatsApp button logic - appears when reaching the widget, disappears at footer
+            const footer = document.querySelector('.footer');
+            const footerTop = footer ? footer.getBoundingClientRect().top : window.innerHeight + 1000;
+            
+            // Show when reaching widget, hide when reaching footer
+            if (widgetTop <= window.innerHeight && footerTop > window.innerHeight) {
+                whatsappButton.classList.add('visible');
+            } else {
+                whatsappButton.classList.remove('visible');
+            }
+        });
+
+        // Handle window resize for menu trigger visibility
+        window.addEventListener('resize', () => {
+            const menuTrigger = document.getElementById('menuTrigger');
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
+                if (heroBottom > 0) {
+                    menuTrigger.style.display = 'none';
+                } else {
+                    menuTrigger.style.display = 'flex';
+                }
+            } else {
+                menuTrigger.style.display = 'flex';
+            }
+        });
+
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                const icon = this.querySelector('.faq-icon');
+
+                // Fermer tous les autres items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    const itemIcon = item.querySelector('.faq-icon');
+                    if (itemIcon) {
+                        itemIcon.textContent = '+';
+                    }
+                });
+                
+                // Ouvrir l'item cliqué si il n'était pas déjà ouvert
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    if (icon) {
+                        icon.textContent = '−';
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.quick-start-content, .reservation-title, .treatwell-widget-container, .emotional-content, .testimonials-section, .testimonial-card, .faq-section, .booking-intro').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Rotation prompt for mobile devices when widget comes into view
+        const rotationPrompt = document.getElementById('rotationPrompt');
+        let rotationPromptShown = false;
+
+        const widgetObserverOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const widgetObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                const isMobile = window.innerWidth <= 768;
+                const isPortrait = window.innerHeight > window.innerWidth;
+
+                if (entry.isIntersecting && isMobile && isPortrait && !rotationPromptShown) {
+                    rotationPromptShown = true;
+                    rotationPrompt.classList.add('visible');
+
+                    setTimeout(() => {
+                        rotationPrompt.classList.add('hiding');
+                        setTimeout(() => {
+                            rotationPrompt.classList.remove('visible', 'hiding');
+                        }, 500);
+                    }, 4000);
+                }
+            });
+        }, widgetObserverOptions);
+
+        if (treatwellWidget) {
+            widgetObserver.observe(treatwellWidget);
+        }
+
+        window.addEventListener('orientationchange', () => {
+            if (rotationPrompt.classList.contains('visible')) {
+                rotationPrompt.classList.add('hiding');
+                setTimeout(() => {
+                    rotationPrompt.classList.remove('visible', 'hiding');
+                }, 500);
+            }
+        });
+
+        // Testimonials carousel functionality
+        const testimonialsCarousel = document.querySelector('.testimonials-carousel');
+        if (testimonialsCarousel) {
+            testimonialsCarousel.addEventListener('mouseenter', () => {
+                document.querySelector('.testimonials-container').style.animationPlayState = 'paused';
+            });
+            
+            testimonialsCarousel.addEventListener('mouseleave', () => {
+                document.querySelector('.testimonials-container').style.animationPlayState = 'running';
+            });
+        }
+
+        // Touch support for mobile carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const testimonialsContainer = document.querySelector('.testimonials-container');
+
+        if (testimonialsContainer && window.innerWidth <= 1024) {
+            testimonialsContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            testimonialsContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    // Pause animation briefly on swipe
+                    testimonialsContainer.style.animationPlayState = 'paused';
+                    setTimeout(() => {
+                        testimonialsContainer.style.animationPlayState = 'running';
+                    }, 1000);
+                }
+            }
+        }
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        let lastScrollTop = 0;
+        let isScrollingUp = false;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset;
+            
+            // Détecter la direction du scroll
+            if (currentScrollTop < lastScrollTop) {
+                // On remonte
+                isScrollingUp = true;
+            } else {
+                // On descend
+                isScrollingUp = false;
+            }
+            
+            // Afficher la flèche seulement si on a scrollé plus de 300px ET qu'on remonte
+            if (currentScrollTop > 300 && isScrollingUp) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+            
+            lastScrollTop = currentScrollTop;
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Zen Scroll Progress Bar
+        function initZenProgressBar() {
+            const progressFill = document.querySelector('.progress-fill-zen');
+            const zenParticles = document.querySelector('.zen-particles');
+            
+            if (!progressFill) return;
+            
+            let particleInterval;
+            
+            function updateProgress() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercentage = (scrollTop / scrollHeight) * 100;
+                
+                progressFill.style.width = scrollPercentage + '%';
+                
+                // Create zen particles when scrolling
+                if (scrollPercentage > 0 && scrollPercentage < 100) {
+                    createZenParticle();
+                }
+            }
+            
+            function createZenParticle() {
+                if (!zenParticles) return;
+                
+                const particle = document.createElement('div');
+                particle.className = 'zen-particle';
+                
+                // Position at the end of the progress bar
+                const progressWidth = progressFill.offsetWidth;
+                particle.style.left = Math.max(0, progressWidth - 10) + 'px';
+                particle.style.top = '50%';
+                
+                zenParticles.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 2000);
+            }
+            
+            // Throttled scroll event
+            let ticking = false;
+            
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateProgress();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', onScroll);
+            
+            // Initial update
+            updateProgress();
+        }
+
+        // Initialize zen progress bar
+        initZenProgressBar();
+
+        // Parallax effect for hero elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const floatingParticles = document.querySelectorAll('.floating-particle');
+            
+            floatingParticles.forEach((particle, index) => {
+                const speed = 0.5 + index * 0.2;
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Enhanced hover effects for advantage items
+        const advantageItems = document.querySelectorAll('.advantage-item');
+        advantageItems.forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                advantageItems.forEach((otherItem, otherIndex) => {
+                    if (otherIndex !== index) {
+                        otherItem.style.opacity = '0.7';
+                        otherItem.style.transform = 'scale(0.95)';
+                    }
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                advantageItems.forEach(otherItem => {
+                    otherItem.style.opacity = '1';
+                    otherItem.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+        // Dynamic background animation
+        let animationId;
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.style.position = 'fixed';
+            element.style.width = '4px';
+            element.style.height = '4px';
+            element.style.background = 'rgba(215, 232, 210, 0.3)';
+            element.style.borderRadius = '50%';
+            element.style.pointerEvents = 'none';
+            element.style.zIndex = '1';
+            
+            const startX = Math.random() * window.innerWidth;
+            const startY = window.innerHeight + 10;
+            const endY = -10;
+            const drift = (Math.random() - 0.5) * 100;
+            
+            element.style.left = startX + 'px';
+            element.style.top = startY + 'px';
+            
+            document.body.appendChild(element);
+            
+            let progress = 0;
+            function animate() {
+                progress += 0.002;
+                if (progress >= 1) {
+                    document.body.removeChild(element);
+                    return;
+                }
+                
+                const currentY = startY + (endY - startY) * progress;
+                const currentX = startX + drift * progress;
+                const opacity = Math.sin(progress * Math.PI) * 0.6;
+                
+                element.style.top = currentY + 'px';
+                element.style.left = currentX + 'px';
+                element.style.opacity = opacity;
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 3000);
+
+        // WhatsApp function with better compatibility
+        function openWhatsApp() {
+            const message = "Bonjour !\nJ'aimerais réserver un moment de détente chez Dream Skin et j'aurais quelques questions.";
+            const phoneNumber = "33629338589";
+            
+            // Try different methods for better compatibility
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/android/i.test(userAgent)) {
+                // Android - try app first, then web
+                window.open(`whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`, '_blank');
+                setTimeout(() => {
+                    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+                }, 1000);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // iOS - try app first, then web
+                window.open(`whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`, '_blank');
+                setTimeout(() => {
+                    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+                }, 1000);
+            } else {
+                // Desktop - direct web
+                window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Add subtle parallax to reservation section
+        const reservationSection = document.querySelector('.reservation-section');
+        window.addEventListener('scroll', () => {
+            const rect = reservationSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                reservationSection.style.transform = `translateY(${progress * 20}px)`;
+            }
+        });
+
+        // Animation des cartes de confiance du hero
+        function animateCounter(element, start, end, duration, suffix = '') {
+            const startTime = performance.now();
+            const range = end - start;
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function pour un effet plus naturel
+                const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (range * easeOutCubic));
+                
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = end + suffix;
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        function animateTrustCards() {
+            const cards = [
+                { id: 'google-card', delay: 0 },
+                { id: 'treatwell-card', delay: 200 },
+                { id: 'satisfaction-card', delay: 400 }
+            ];
+
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    const cardElement = document.getElementById(card.id);
+                    if (cardElement) {
+                        cardElement.classList.add('animate-in');
+                        
+                        // Animation de bounce après l'apparition
+                        setTimeout(() => {
+                            cardElement.classList.add('animate-bounce');
+                        }, 300);
+                    }
+                }, card.delay);
+            });
+
+            // Animation des compteurs après l'apparition des cartes
+            setTimeout(() => {
+                // Google: 5/5 et 10 avis
+                animateCounter(document.getElementById('google-rating'), 0, 5, 1500, '/5');
+                animateCounter(document.getElementById('google-reviews'), 0, 10, 1500, ' avis');
+                
+                // Treatwell: 5/5 et 5 avis
+                setTimeout(() => {
+                    animateCounter(document.getElementById('treatwell-rating'), 0, 5, 1500, '/5');
+                    animateCounter(document.getElementById('treatwell-reviews'), 0, 5, 1500, ' avis');
+                }, 200);
+                
+                // Satisfaction: 100%
+                setTimeout(() => {
+                    animateCounter(document.getElementById('satisfaction-rating'), 0, 100, 1500, '%');
+                }, 400);
+            }, 800);
+        }
+
+        // Démarrer l'animation au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateTrustCards, 500);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+					<img src="logos/Logo1.svg" alt="Dream Skin" style="max-width: 150px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+					<p>Institut de bien-être dédié à votre beauté intérieure et extérieure. Spécialistes du head spa, massage et skincare coréenne.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><a href="https://www.google.com/maps/search/5+rue+de+la+Liberté+95500+Gonesse" target="_blank" style="color: inherit; text-decoration: none;">5, rue de la Liberté<br>95500 Gonesse</a><br><br>
+                    <a href="tel:+33629338589" style="color: inherit; text-decoration: none;">06 29 33 85 89</a><br>
+                    <a href="mailto:contact@dreamskin.fr">contact@dreamskin.fr</a></p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/dreamskin.off/" target="_blank" class="social-link" title="Instagram Dream Skin">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/33629338589?text=Bonjour%20!%0AJ'aimerais%20réserver%20un%20moment%20de%20détente%20chez%20Dream%20Skin%20et%20j'aurais%20quelques%20questions." target="_blank" class="social-link" title="WhatsApp Dream Skin">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.085z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Horaires</h3>
+                    <p>Mardi - Dimanche : 10h - 20h<br><br>
+                    Fermé le lundi</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Dream Skin. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="footer-separator">|</span>
+                    <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Curseur personnalisé -->
+    <script src="assets/js/custom-cursor.js"></script>
+
+
+
+<div class="custom-cursor" style="left: 180px; top: 601px;"></div><div style="position: fixed; width: 4px; height: 4px; background: rgba(215, 232, 210, 0.3); border-radius: 50%; pointer-events: none; z-index: 1; left: 1133.25px; top: 55px; opacity: 0.192566;"></div><div style="position: fixed; width: 4px; height: 4px; background: rgba(215, 232, 210, 0.3); border-radius: 50%; pointer-events: none; z-index: 1; left: 1471.7px; top: 282.5px; opacity: 0.596971;"></div><div style="position: fixed; width: 4px; height: 4px; background: rgba(215, 232, 210, 0.3); border-radius: 50%; pointer-events: none; z-index: 1; left: 1052.31px; top: 508.75px; opacity: 0.305425;"></div></body></html>
