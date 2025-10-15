@@ -15,7 +15,7 @@ Créer un fichier `.env` avec :
 ```
 MAILJET_API_KEY=votre_clé
 MAILJET_API_SECRET=votre_secret
-MAILJET_LIST_ID=10511328
+MAILJET_LIST_ID=your_list_id
 PORT=4000
 ```
 
